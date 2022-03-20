@@ -1,0 +1,17 @@
+{
+  "Layout.skipToContent": "Skip to content",
+  "Layout.sidebar": "Sidebar",
+  "Layout.openSidebar": "Open sidebar",
+  "Layout.closeSidebar": "Close sidebar",
+  "Layout.search": "Search",
+  "Layout.openProfileMenu": "Open profile menu",
+  "Layout.closeProfileMenu": "Close profile menu",
+  "Layout.dashboard": "Dashboard",
+  "Layout.signedInAs": "Signed in as",
+  "Layout.signOut": "Sign out",
+  "Layout.notifications": "Notifications",
+  "Dashboard.title": "Dashboard",
+  "NotFound.title": "404: Page not found",
+  "NotFound.description": "The page you were trying to access cannot be found or you might not have permissions to see this page.",
+  "NotFound.goBackToDashboard": "Go back to dashboard"
+}

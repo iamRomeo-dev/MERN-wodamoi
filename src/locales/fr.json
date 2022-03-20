@@ -1,0 +1,17 @@
+{
+  "Layout.skipToContent": "Passer au contenu",
+  "Layout.sidebar": "Barre latérale",
+  "Layout.openSidebar": "Ouvrir la barre latérale",
+  "Layout.closeSidebar": "Fermer la barre latérale",
+  "Layout.search": "Rechercher",
+  "Layout.openProfileMenu": "Ouvrir le menu de profil",
+  "Layout.closeProfileMenu": "Fermer le menu de profil",
+  "Layout.dashboard": "Tableau de bord",
+  "Layout.signedInAs": "Connecté avec",
+  "Layout.signOut": "Se déconnecter",
+  "Layout.notifications": "Notifications",
+  "Dashboard.title": "Tableau de bord",
+  "NotFound.title": "404 : Page non trouvée",
+  "NotFound.description": "La page à laquelle vous voulez accéder n'a pas pu être trouvée ou vous n'avez pas les permissions pour la voir.",
+  "NotFound.goBackToDashboard": "Retourner au tableau de bord"
+}
