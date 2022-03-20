@@ -30,25 +30,21 @@ export const WodCreatorListItem = ({ wod, props }) => {
       <div tw="min-w-0 flex-1 sm:flex sm:items-center sm:justify-between">
         <div tw="truncate w-full">
           <div tw="flex items-center justify-between text-sm">
-            {workSiteId === undefined ? (
-              <>
-                {wod.name ? (
-                  <p tw="font-medium text-indigo-600 truncate">{wod.name.toUpperCase()}</p>
-                ) : (
-                  <p tw="font-medium text-indigo-600 truncate">WOD SANS NOM</p>
-                )}
-                {wod.type && (
-                  <div tw="flex items-center gap-1 text-sm text-gray-500">
-                    <Badge color={color}>
-                      <BadgeDot />
-                      {wod?.type} {wod.time && wod.time + " min"}
-                    </Badge>
-                  </div>
-                )}
-              </>
-            ) : (
-              <p tw="text-xl font-bold text-gray-900 sm:text-2xl">{wod.name.toUpperCase()}</p>
-            )}
+            <>
+              {wod.name ? (
+                <p tw="font-medium text-indigo-600 truncate">{wod.name.toUpperCase()}</p>
+              ) : (
+                <p tw="font-medium text-indigo-600 truncate">WOD SANS NOM</p>
+              )}
+              {wod.type && (
+                <div tw="flex items-center gap-1 text-sm text-gray-500">
+                  <Badge color={color}>
+                    <BadgeDot />
+                    {wod?.type} {wod.time && wod.time + " min"}
+                  </Badge>
+                </div>
+              )}
+            </>
           </div>
           <ListTitle wod={wod} />
         </div>
@@ -64,7 +60,7 @@ export const ListTitle = ({ wod }) => {
         <div tw="flex items-center flex-wrap gap-4 text-sm text-gray-500">
           <div tw="flex items-center gap-1 text-sm text-gray-500">
             <HashtagIcon tw="w-5 h-5 text-gray-400" />
-            <p>{wod.name}</p>
+            <p>{wod?.name}</p>
           </div>
 
           <div tw="flex items-center gap-1 text-sm text-gray-500">

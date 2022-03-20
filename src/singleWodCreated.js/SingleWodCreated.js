@@ -16,7 +16,7 @@ export const SingleWodCreated = () => {
 
   return (
     <div>
-      <Helmet title={dataWorkSiteById.name} />
+      <Helmet title={status === "success" ? dataWorkSiteById.name : "Wod sélectionné"} />
       <Page tw="relative">
         <PageContent>
           <Link

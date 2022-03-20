@@ -2,7 +2,7 @@
 import { Helmet } from "react-helmet-async";
 import { Page, PageContent } from "../shared/Page";
 import "twin.macro";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ChevronLeftIcon, PlusIcon } from "@heroicons/react/solid";
 import { useWodCreatorQuery } from "../APIs";
 import {
@@ -34,7 +34,7 @@ const WodCreator = () => {
             <span>Retour</span>
           </Link>
 
-          {status === "success" && wods.list.length === 0 ? (
+          {status === "success" && wods?.list.length === 0 ? (
             <EmptyState>
               <EmptyStateIllustration as={NotFoundIllustration} />
               <>
