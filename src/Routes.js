@@ -5,6 +5,7 @@ import Home from "./home/Home";
 import { Layout } from "./shared/Layout";
 import { PageSkeleton } from "./shared/Page";
 import WodCreator from "./wodcreator/WodCreator";
+import WodCreatorCreation from "./wodcreator/WodCreatorCreation";
 
 const NotFoundScreen = lazy(() => import("./not-found/NotFoundScreen"));
 
@@ -15,7 +16,10 @@ export const AppRoutes = withAuthenticationRequired(() => {
         <Suspense fallback={<PageSkeleton />}>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/wod-creator/creation" element={<WodCreatorCreation />} />
             <Route path="/wod-creator" element={<WodCreator />} />
+            <Route path="/seance-complete" element={<WodCreator />} />
+            <Route path="/rm-tracker" element={<WodCreator />} />
             <Route path="*" element={<NotFoundScreen />} />
           </Routes>
         </Suspense>

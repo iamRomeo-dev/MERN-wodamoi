@@ -23,3 +23,20 @@ export const useWodCreatorQuery = (searchParams = {}) => {
     };
   });
 };
+
+export const useWodCreatorMutation = () => {
+  const api = useApi();
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (json = {}) => {
+      return api
+        .post("v1/test", {
+          json,
+        })
+        .json();
+    },
+    onSuccess: async () => {
+      await queryClient.invalidateQueries("v1/test");
+    },
+  });
+};

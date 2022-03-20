@@ -19,18 +19,8 @@ import { WodCreatorListItemSkeleton } from "./WodCreatorListItemSkeleton";
 import { WodCreatorListItem } from "./WodCreatorListItem";
 
 const WodCreator = () => {
-  const { t } = useTranslation();
-  const { organization } = useParams();
   const loadingArray = 10;
-  const pageSize = 100;
-  const location = useLocation();
-  const pageParams = location.search.substr(location.search.length - 1);
-
-  const { status, data: wods } = useWodCreatorQuery({
-    limit: pageSize,
-    skip: Number(pageParams) * pageSize,
-  });
-  console.log(wods);
+  const { status, data: wods } = useWodCreatorQuery();
   return (
     <div>
       <Helmet title="Wod creator" />
@@ -54,7 +44,7 @@ const WodCreator = () => {
                 <EmptyStateDescription>
                   Créer le premier chantier en cliquant sur le bouton ci-dessous.
                 </EmptyStateDescription>
-                <PrimaryButton as={Link} to="" tw="mt-8">
+                <PrimaryButton as={Link} to="/wod-creator/creation" tw="mt-8">
                   Crée ton premier wod
                 </PrimaryButton>
               </>
@@ -86,11 +76,10 @@ const WodCreator = () => {
                   )}
                 </ul>
               </div>
-              {/* <Pagination data={workSites} pageParams={pageParams} totalOfPages={totalOfPages} /> */}
             </>
           )}
-          <FloatButton as={Link} to="" tw="">
-            <PlusIcon tw="h-10 w-8 text-gray-800" />
+          <FloatButton as={Link} to="/wod-creator/creation" tw="">
+            <PlusIcon tw="h-12 w-10 text-gray-800" />
           </FloatButton>
         </PageContent>
       </Page>
