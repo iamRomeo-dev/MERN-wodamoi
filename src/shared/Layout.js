@@ -99,7 +99,7 @@ const ProfileDropdown = () => {
                     as="button"
                     onClick={() => logout({ returnTo: window.location.origin })}
                   >
-                    Se déconnecté
+                    Se déconnecter
                   </ProfileDropdownItem>
                 </section>
               </Menu.Items>
