@@ -99,7 +99,7 @@ const ProfileDropdown = () => {
                     as="button"
                     onClick={() => logout({ returnTo: window.location.origin })}
                   >
-                    toto
+                    Se déconnecté
                   </ProfileDropdownItem>
                 </section>
               </Menu.Items>
@@ -150,7 +150,7 @@ export const Layout = ({ children }) => {
         </Sidebar>
 
         {/* Navbar & content */}
-        <div tw="flex flex-col w-0 flex-1 overflow-hidden">
+        <div tw="flex flex-col w-0 flex-1 overflow-hidden bg-gray-800">
           <Navbar
             start={<OpenSidebarButton onClick={openSidebar} />}
             center={<SearchBar />}

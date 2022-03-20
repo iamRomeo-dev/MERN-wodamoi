@@ -4,7 +4,13 @@ import "twin.macro";
 import { Container } from "./Container";
 
 export const Page = (props) => {
-  return <main tw="flex-1 relative overflow-y-auto focus:(outline-none)" tabIndex={0} {...props} />;
+  return (
+    <main
+      tw="flex-1 relative overflow-y-auto focus:(outline-none) bg-gray-800"
+      tabIndex={0}
+      {...props}
+    />
+  );
 };
 
 export const PageHeader = ({ title, actions }) => {

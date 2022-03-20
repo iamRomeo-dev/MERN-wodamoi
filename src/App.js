@@ -21,13 +21,14 @@ const App = () => {
       domain={process.env.REACT_APP_AUTH0_DOMAIN}
       clientId={process.env.REACT_APP_AUTH0_CLIENTID}
       redirectUri={window.location.origin}
-      audience={process.env.REACT_APP_AUTH0_AUDIENCE}>
+      audience={process.env.REACT_APP_AUTH0_AUDIENCE}
+    >
       <QueryClientProvider client={queryClient}>
         <GlobalStyles />
         <Global styles={{ body: tw`antialiased font-sans` }} />
         <I18nextProvider i18n={i18n}>
           <HelmetProvider>
-            <Helmet titleTemplate="%s | React App" />
+            <Helmet titleTemplate="%s | Wodamoi" />
             <AppRoutes />
           </HelmetProvider>
         </I18nextProvider>

@@ -15,3 +15,8 @@ export const Button = styled(ButtonBase)(
   tw`border-gray-300 shadow-sm text-gray-700 bg-white`,
   tw`hover:(bg-gray-50)`
 );
+
+export const FloatButton = styled(ButtonBase)(
+  tw`border-transparent shadow-sm text-white bg-white px-3 py-2 fixed bottom-3 right-4 rounded-full font-size[30px]`,
+  tw`hover:(bg-indigo-700)`
+);
