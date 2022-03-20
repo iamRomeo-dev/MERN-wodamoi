@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./home/Home";
 import { Layout } from "./shared/Layout";
 import { PageSkeleton } from "./shared/Page";
+import { SingleWodCreated } from "./singleWodCreated.js/SingleWodCreated";
 import WodCreator from "./wodcreator/WodCreator";
 import WodCreatorCreation from "./wodcreator/WodCreatorCreation";
 
@@ -17,6 +18,7 @@ export const AppRoutes = withAuthenticationRequired(() => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/wod-creator/creation" element={<WodCreatorCreation />} />
+            <Route path="/wod-creator/:wodId" element={<SingleWodCreated />} />
             <Route path="/wod-creator" element={<WodCreator />} />
             <Route path="/seance-complete" element={<WodCreator />} />
             <Route path="/rm-tracker" element={<WodCreator />} />

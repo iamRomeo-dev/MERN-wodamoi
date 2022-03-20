@@ -1,21 +1,20 @@
 /** @jsxImportSource @emotion/react */
 import "twin.macro";
 import HashtagIcon from "@heroicons/react/outline/HashtagIcon";
-import CalendarIcon from "@heroicons/react/outline/CalendarIcon";
 import GlobeAltIcon from "@heroicons/react/outline/GlobeAltIcon";
 import IdentificationIcon from "@heroicons/react/outline/IdentificationIcon";
-import LocationMarkerIcon from "@heroicons/react/outline/LocationMarkerIcon";
 import { useParams } from "react-router-dom";
+import { Badge, BadgeDot } from "../shared/Badge";
 
 export const getInactifStatusColor = (inactifStatus) => {
   switch (inactifStatus) {
-    case "Etude":
+    case "METCON":
       return "gray";
-    case "Travaux":
+    case "AMRAP":
       return "green";
-    case "Achevé":
+    case "FOR TIME":
       return "red";
-    case "Annulé":
+    case "EMOM":
       return "yellow";
     default:
       return "green";
@@ -24,7 +23,7 @@ export const getInactifStatusColor = (inactifStatus) => {
 
 export const WodCreatorListItem = ({ wod, props }) => {
   const { workSiteId } = useParams();
-  const color = getInactifStatusColor(wod.status);
+  const color = getInactifStatusColor(wod.type);
 
   return (
     <div tw="px-6 py-4 flex items-center" {...props}>
@@ -33,15 +32,19 @@ export const WodCreatorListItem = ({ wod, props }) => {
           <div tw="flex items-center justify-between text-sm">
             {workSiteId === undefined ? (
               <>
-                <p tw="font-medium text-indigo-600 truncate">{wod.name.toUpperCase()}</p>
-                {/* {workSite.status && (
+                {wod.name ? (
+                  <p tw="font-medium text-indigo-600 truncate">{wod.name.toUpperCase()}</p>
+                ) : (
+                  <p tw="font-medium text-indigo-600 truncate">WOD SANS NOM</p>
+                )}
+                {wod.type && (
                   <div tw="flex items-center gap-1 text-sm text-gray-500">
                     <Badge color={color}>
                       <BadgeDot />
-                      {workSite.status}
+                      {wod?.type} {wod.time && wod.time + " min"}
                     </Badge>
                   </div>
-                )} */}
+                )}
               </>
             ) : (
               <p tw="text-xl font-bold text-gray-900 sm:text-2xl">{wod.name.toUpperCase()}</p>

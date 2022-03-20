@@ -5,7 +5,7 @@ import qs from "qs";
 export const useWodCreatorQuery = (searchParams = {}) => {
   const api = useApi();
   return useQuery([`v1/test`, searchParams], async () => {
-    const { limit = 0, skip = 0, sort = "-createdAt", ...query } = searchParams;
+    const { limit = 10, skip = 0, sort = "-createdAt", ...query } = searchParams;
 
     const response = await api.get(`v1/test`, {
       searchParams: qs.stringify({
@@ -38,5 +38,13 @@ export const useWodCreatorMutation = () => {
     onSuccess: async () => {
       await queryClient.invalidateQueries("v1/test");
     },
+  });
+};
+
+export const useWodCreatedByIdQuery = (uuid) => {
+  const api = useApi();
+  return useQuery({
+    queryKey: `v1/test/${uuid}`,
+    queryFn: async () => api.get(`v1/test/${uuid}`).json(),
   });
 };

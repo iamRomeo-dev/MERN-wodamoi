@@ -1,10 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { Helmet } from "react-helmet-async";
-import { useTranslation } from "react-i18next";
 import { Page, PageContent } from "../shared/Page";
 import "twin.macro";
-import { Filter } from "../shared/QueryHelpers";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { ChevronLeftIcon, PlusIcon } from "@heroicons/react/solid";
 import { useWodCreatorQuery } from "../APIs";
 import {
@@ -66,7 +64,7 @@ const WodCreator = () => {
                             tw="hover:text-white cursor-pointer hover:bg-gray-50 shadow-sm overflow-hidden"
                             key={wod._id}
                           >
-                            <Link to="">
+                            <Link to={`/wod-creator/${wod._id}`}>
                               <WodCreatorListItem wod={wod} index={index} />
                             </Link>
                           </li>

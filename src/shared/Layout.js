@@ -141,7 +141,7 @@ export const Layout = ({ children }) => {
 
   return (
     <>
-      <div tw="h-screen flex overflow-hidden bg-gray-100">
+      <div tw="flex overflow-hidden bg-gray-100">
         <Sidebar isOpen={isSidebarOpen} onDismiss={closeSidebar} header={<SidebarHeader />}>
           <SidebarNavLink to="/" exact="true">
             <HomeOutlineIcon />
