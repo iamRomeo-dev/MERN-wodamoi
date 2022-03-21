@@ -38,9 +38,9 @@ const WodCreator = () => {
             <EmptyState>
               <EmptyStateIllustration as={NotFoundIllustration} />
               <>
-                <EmptyStateTitle as="h3">Il n'y a pas de chantier</EmptyStateTitle>
+                <EmptyStateTitle as="h3">Il n'y a pas de wod</EmptyStateTitle>
                 <EmptyStateDescription>
-                  Créer le premier chantier en cliquant sur le bouton ci-dessous.
+                  Créer le premier wod en cliquant sur le bouton ci-dessous.
                 </EmptyStateDescription>
                 <PrimaryButton as={Link} to="/wod-creator/creation" tw="mt-8">
                   Crée ton premier wod

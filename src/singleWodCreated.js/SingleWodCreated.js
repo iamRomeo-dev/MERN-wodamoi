@@ -4,8 +4,7 @@ import { Page, PageContent } from "../shared/Page";
 import "twin.macro";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDeleteWodCreated, useWodCreatedByIdQuery } from "../APIs";
-import { ChevronLeftIcon, PlusIcon, RefreshIcon, TrashIcon } from "@heroicons/react/solid";
-import { FloatButton, FloatButtonLeft } from "../shared/Buttons";
+import { ChevronLeftIcon, RefreshIcon, TrashIcon } from "@heroicons/react/solid";
 import { getInactifStatusColor } from "../wodcreator/WodCreatorListItem";
 import { Badge, BadgeDot } from "../shared/Badge";
 

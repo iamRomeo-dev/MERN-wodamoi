@@ -1,15 +1,43 @@
 /** @jsxImportSource @emotion/react */
-import { ChevronLeftIcon } from "@heroicons/react/solid";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import "twin.macro";
 import { useWodCreatorMutation } from "../APIs";
-import { Button, PrimaryButton } from "../shared/Buttons";
+import { Button, PrimaryButton, SquaredButton } from "../shared/Buttons";
 import { FieldsetLegend, FormGroup, HelperText, Label, RequiredAsterisk } from "../shared/Form";
 import { Page, PageContent } from "../shared/Page";
-import { Panel, PanelContent } from "../shared/Panel";
+import { PanelContent } from "../shared/Panel";
+import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
+import { ChevronLeftIcon, ChevronRightIcon, PlusIcon } from "@heroicons/react/solid";
+
+function LeftArrow() {
+  const { isFirstItemVisible, scrollPrev } = useContext(VisibilityContext);
+  return (
+    <ChevronLeftIcon
+      tw="h-10 w-10 mt-auto mb-auto text-white"
+      disabled={isFirstItemVisible}
+      onClick={() => scrollPrev()}
+    >
+      Left
+    </ChevronLeftIcon>
+  );
+}
+
+function RightArrow() {
+  const { isLastItemVisible, scrollNext } = useContext(VisibilityContext);
+
+  return (
+    <ChevronRightIcon
+      tw="h-10 w-10 mt-auto mb-auto text-white"
+      disabled={isLastItemVisible}
+      onClick={() => scrollNext()}
+    >
+      Right
+    </ChevronRightIcon>
+  );
+}
 
 const typeForWods = [
   {
@@ -29,6 +57,8 @@ const typeForWods = [
 const WodCreatorCreation = () => {
   const [typeForWod, setTypeForWod] = useState();
   const [timeForWod, setTimeForWod] = useState();
+  const [clean, setClean] = useState(false);
+  console.log("clean", clean);
 
   const { mutate, isLoading: isSaving } = useWodCreatorMutation();
   const navigate = useNavigate();
@@ -39,6 +69,7 @@ const WodCreatorCreation = () => {
         ...data,
         type: typeForWod,
         time: timeForWod,
+        MovementOne: clean,
       },
       {
         onSuccess: () => {
@@ -58,6 +89,14 @@ const WodCreatorCreation = () => {
     },
   });
 
+  function handleClick(e) {
+    e.preventDefault();
+    setClean(!clean);
+  }
+
+  function handleClickTest(e) {
+    e.preventDefault();
+  }
   return (
     <>
       <Helmet title="Crée ton wod" />
@@ -77,6 +116,53 @@ const WodCreatorCreation = () => {
             <PanelContent>
               <FieldsetLegend>Crée ton wod</FieldsetLegend>
               <HelperText>Informations générales concernant le workout de ton choix.</HelperText>
+
+              <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
+                <SquaredButton tw="mr-2" onClick={handleClick}>
+                  {clean === false ? (
+                    <PlusIcon tw="h-12 w-10 text-gray-800" />
+                  ) : (
+                    <PlusIcon tw="h-12 w-10 text-white" />
+                  )}
+                </SquaredButton>
+
+                <SquaredButton tw="mr-2" onClick={handleClickTest}>
+                  <PlusIcon tw="h-12 w-10 text-gray-800" />
+                </SquaredButton>
+                <SquaredButton tw="mr-2" onClick={handleClickTest}>
+                  <PlusIcon tw="h-12 w-10 text-gray-800" />
+                </SquaredButton>
+                <SquaredButton tw="mr-2" onClick={handleClickTest}>
+                  <PlusIcon tw="h-12 w-10 text-gray-800" />
+                </SquaredButton>
+                <SquaredButton tw="mr-2" onClick={handleClickTest}>
+                  <PlusIcon tw="h-12 w-10 text-gray-800" />
+                </SquaredButton>
+                <SquaredButton tw="mr-2" onClick={handleClickTest}>
+                  <PlusIcon tw="h-12 w-10 text-gray-800" />
+                </SquaredButton>
+                <SquaredButton tw="mr-2" onClick={handleClickTest}>
+                  <PlusIcon tw="h-12 w-10 text-gray-800" />
+                </SquaredButton>
+                <SquaredButton tw="mr-2" onClick={handleClickTest}>
+                  <PlusIcon tw="h-12 w-10 text-gray-800" />
+                </SquaredButton>
+                <SquaredButton tw="mr-2" onClick={handleClickTest}>
+                  <PlusIcon tw="h-12 w-10 text-gray-800" />
+                </SquaredButton>
+                <SquaredButton tw="mr-2" onClick={handleClickTest}>
+                  <PlusIcon tw="h-12 w-10 text-gray-800" />
+                </SquaredButton>
+                <SquaredButton tw="mr-2" onClick={handleClickTest}>
+                  <PlusIcon tw="h-12 w-10 text-gray-800" />
+                </SquaredButton>
+                <SquaredButton tw="mr-2" onClick={handleClickTest}>
+                  <PlusIcon tw="h-12 w-10 text-gray-800" />
+                </SquaredButton>
+                <SquaredButton tw="mr-2" onClick={handleClickTest}>
+                  <PlusIcon tw="h-12 w-10 text-gray-800" />
+                </SquaredButton>
+              </ScrollMenu>
 
               <div tw="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6">
                 <FormGroup>
