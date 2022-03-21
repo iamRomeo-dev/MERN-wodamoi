@@ -48,3 +48,33 @@ export const useWodCreatedByIdQuery = (uuid) => {
     queryFn: async () => api.get(`v1/test/${uuid}`).json(),
   });
 };
+
+export const useWodCreatorPatchMutation = (uuid) => {
+  const api = useApi();
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (json = {}) => {
+      return api
+        .patch(`v1/test/${uuid}`, {
+          json,
+        })
+        .json();
+    },
+    onSuccess: async () => {
+      await queryClient.invalidateQueries(`v1/timesheet/${uuid}`);
+    },
+  });
+};
+
+export const useDeleteWodCreated = () => {
+  const api = useApi();
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (uuid) => {
+      await api.delete(`v1/test/${uuid}`);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries("v1/test");
+    },
+  });
+};

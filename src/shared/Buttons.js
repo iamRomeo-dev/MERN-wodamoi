@@ -20,3 +20,8 @@ export const FloatButton = styled(ButtonBase)(
   tw`border-transparent shadow-sm text-white bg-gradient-to-r from-purple-400 to-pink-400 px-3 py-2 fixed bottom-3 right-4 rounded-full font-size[30px]`,
   tw`hover:(bg-white)`
 );
+
+export const FloatButtonLeft = styled(ButtonBase)(
+  tw`border-transparent shadow-sm text-white bg-gradient-to-r from-purple-400 to-pink-400 px-3 py-2 fixed bottom-3 left-4 rounded-full font-size[30px]`,
+  tw`hover:(bg-white)`
+);
