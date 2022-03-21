@@ -66,7 +66,7 @@ const WodCreatorUpdate = () => {
     <>
       <Helmet title="Crée ton wod" />
       <Page>
-        <PageContent>
+        <PageContent tw="h-screen">
           <Link
             to={{
               pathname: `/wod-creator/${wodId}`,
@@ -76,14 +76,11 @@ const WodCreatorUpdate = () => {
             <ChevronLeftIcon tw="-ml-2 h-5 w-5 text-gray-100" aria-hidden="true" />
             <span>Retour</span>
           </Link>
-          <h1 tw="text-xl font-bold text-white sm:text-2xl mt-10 mb-5">Crée ton wod</h1>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Panel>
               <PanelContent>
-                <FieldsetLegend>Informations générales du chantier</FieldsetLegend>
-                <HelperText>
-                  Informations générales du chantier permettant de l'identifier.
-                </HelperText>
+                <FieldsetLegend>Met à jour ton wod</FieldsetLegend>
+                <HelperText>Informations générales le workout de ton choix.</HelperText>
 
                 <div tw="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6">
                   <FormGroup>
@@ -139,7 +136,7 @@ const WodCreatorUpdate = () => {
                   <FormGroup>
                     <Label htmlFor="description">Description</Label>
                     <textarea
-                      tw="flex-1 block w-full text-sm z-0 focus:z-10 border-gray-300 rounded-md focus:(ring-indigo-500 border-indigo-500) disabled:(bg-gray-50 text-gray-500)"
+                      tw="flex-1 block w-full h-32 text-sm z-0 focus:z-10 border-gray-300 rounded-md focus:(ring-indigo-500 border-indigo-500) disabled:(bg-gray-50 text-gray-500)"
                       {...register("description")}
                       type="text"
                       id="description"

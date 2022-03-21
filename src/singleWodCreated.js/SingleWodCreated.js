@@ -4,14 +4,19 @@ import { Page, PageContent } from "../shared/Page";
 import "twin.macro";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDeleteWodCreated, useWodCreatedByIdQuery } from "../APIs";
-import { ChevronLeftIcon, PlusIcon, ChevronDownIcon, TrashIcon } from "@heroicons/react/solid";
+import { ChevronLeftIcon, PlusIcon, RefreshIcon, TrashIcon } from "@heroicons/react/solid";
 import { FloatButton, FloatButtonLeft } from "../shared/Buttons";
+import { getInactifStatusColor } from "../wodcreator/WodCreatorListItem";
+import { Badge, BadgeDot } from "../shared/Badge";
 
 export const SingleWodCreated = () => {
   const { wodId } = useParams();
   const navigate = useNavigate();
+
   const { status, data: dataWorkSiteById } = useWodCreatedByIdQuery(wodId);
   const { mutateAsync: deleteWod } = useDeleteWodCreated();
+
+  const color = getInactifStatusColor(dataWorkSiteById?.type);
 
   const onRemove = (e) => {
     e.preventDefault();
@@ -34,21 +39,58 @@ export const SingleWodCreated = () => {
           </Link>
 
           {status === "success" && (
-            <div tw="text-white">
-              <h1>{dataWorkSiteById?.name && dataWorkSiteById.name}</h1>
-              <p>
-                {dataWorkSiteById.description &&
-                  dataWorkSiteById.description.split("\n").map((str) => <p>{str}</p>)}
-              </p>
+            <div tw="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200 mt-6">
+              <div tw="flex-1 flex flex-col p-8">
+                <h3 tw="mt-6 text-gray-900 text-sm font-medium">
+                  {dataWorkSiteById?.name && dataWorkSiteById.name}
+                </h3>
+                <dl tw="mt-1 flex-grow flex flex-col justify-between">
+                  <dt tw="sr-only">Title</dt>
+
+                  {dataWorkSiteById.type && (
+                    <div tw="flex items-center justify-center gap-1 text-sm text-gray-500">
+                      <Badge color={color}>
+                        <BadgeDot />
+                        {dataWorkSiteById?.type}{" "}
+                        {dataWorkSiteById.time && dataWorkSiteById.time + " min"}
+                      </Badge>
+                    </div>
+                  )}
+
+                  <dt tw="sr-only">Role</dt>
+                  <dd tw="mt-3">
+                    <span tw="px-2 py-1 text-green-800 text-xs font-medium bg-green-100 rounded-full">
+                      {dataWorkSiteById.description &&
+                        dataWorkSiteById.description.split("\n").map((str) => <p>{str}</p>)}
+                    </span>
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <div tw="-mt-px flex divide-x divide-gray-200">
+                  <div tw="w-0 flex-1 flex">
+                    <button
+                      onClick={onRemove}
+                      tw="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500"
+                    >
+                      <TrashIcon tw="w-5 h-5 text-gray-800" />
+                      <span tw="ml-3">Supprimer</span>
+                    </button>
+                  </div>
+                  <div tw="-ml-px w-0 flex-1 flex">
+                    <Link
+                      to={`/wod-creator/${wodId}/update`}
+                      tw="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500"
+                    >
+                      <RefreshIcon tw="w-5 h-5 text-gray-800" />
+                      <span tw="ml-3">Modifier</span>
+                    </Link>
+                  </div>
+                </div>
+              </div>
             </div>
           )}
         </PageContent>
-        <FloatButton as={Link} to={`/wod-creator/${wodId}/update`} tw="">
-          <PlusIcon tw="h-12 w-10 text-gray-800" />
-        </FloatButton>
-        <FloatButtonLeft onClick={onRemove}>
-          <TrashIcon tw="h-12 w-10 text-gray-800" />
-        </FloatButtonLeft>
       </Page>
     </div>
   );
