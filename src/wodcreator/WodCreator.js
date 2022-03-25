@@ -24,6 +24,7 @@ const WodCreator = () => {
       <Helmet title="Wod creator" />
       <Page tw="relative">
         <PageContent>
+          <a href="tel:+900300400">Phone: 900 300 400</a>
           <Link
             to={{
               pathname: `/`,
