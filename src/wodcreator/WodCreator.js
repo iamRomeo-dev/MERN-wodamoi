@@ -25,9 +25,16 @@ const WodCreator = () => {
       <Page tw="relative">
         <PageContent>
           <a href="tel:+900300400">Phone: 900 300 400</a>
-          <a href="http://maps.google.com/?q=1200 Pennsylvania Ave SE, Washington, District of Columbia, 20003">
+          <a href="http://maps.google.com/?q=1200 10 Allée Michel Montaigne, Pont-du-Château">
             adress
           </a>
+          <a
+            href={`https://waze.com/ul?ll= 45.803269845281136,3.2329881423295537&navigate=yes`}
+            target="_blank"
+          >
+            Open in Waze
+          </a>
+
           <Link
             to={{
               pathname: `/`,
