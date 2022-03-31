@@ -25,7 +25,7 @@ const WodCreator = () => {
       <Page tw="relative">
         <PageContent>
           <a href="tel:+900300400">Phone: 900 300 400</a>
-          <a href="http://maps.google.com/?q=1200 26 rue du pontet, Gerzat">New test</a>
+          <a href="http://maps.google.com/?q=26 rue du pontet, Gerzat">New test</a>
 
           <Link
             to={{
