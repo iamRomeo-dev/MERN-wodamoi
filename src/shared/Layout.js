@@ -147,11 +147,7 @@ export const Layout = ({ children }) => {
             <HomeOutlineIcon />
             {t("Layout.dashboard")}
           </SidebarNavLink>
-          <SidebarNavLink
-            to="
-          /seance-complete"
-            exact="true"
-          >
+          <SidebarNavLink to="/seance-complete" exact="true">
             <HomeOutlineIcon />
             Seance complete
           </SidebarNavLink>
