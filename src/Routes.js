@@ -5,6 +5,7 @@ import Home from "./home/Home";
 import { Layout } from "./shared/Layout";
 import { PageSkeleton } from "./shared/Page";
 import { SingleWodCreated } from "./singleWodCreated.js/SingleWodCreated";
+import Test from "./Test";
 import WodCreator from "./wodcreator/WodCreator";
 import WodCreatorCreation from "./wodcreator/WodCreatorCreation";
 import WodCreatorUpdate from "./wodcreator/WodCreatorUpdate";
@@ -22,7 +23,7 @@ export const AppRoutes = withAuthenticationRequired(() => {
             <Route path="/wod-creator/:wodId/update" element={<WodCreatorUpdate />} />
             <Route path="/wod-creator/:wodId" element={<SingleWodCreated />} />
             <Route path="/wod-creator" element={<WodCreator />} />
-            <Route path="/seance-complete" element={<WodCreator />} />
+            <Route path="/seance-complete" element={<Test />} />
             <Route path="/rm-tracker" element={<WodCreator />} />
             <Route path="*" element={<NotFoundScreen />} />
           </Routes>
