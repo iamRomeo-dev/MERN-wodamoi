@@ -2,7 +2,7 @@
 import { Helmet } from "react-helmet-async";
 import { Page, PageContent } from "../shared/Page";
 import "twin.macro";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { ChevronLeftIcon, PlusIcon } from "@heroicons/react/solid";
 import {
   EmptyState,
@@ -16,14 +16,31 @@ import { WodCreatorListItemSkeleton } from "../wodcreator/WodCreatorListItemSkel
 import { RmTrackerListItem } from "./RmTrackerListItem";
 import { useRmQuery } from "../APIsRmTracker";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Filter } from "../shared/QueryHelper";
 
-const RmTrackerList = () => {
+const RmTrackerByMovment = () => {
+  const { movment } = useParams();
+  console.log(movment);
   const { user } = useAuth0();
   const loadingArray = 10;
-  const { status, data: rms } = useRmQuery();
-  // Sort the array in order to keep only unique objects with the same movment value
-  const key = "movment";
-  const rmsUniqueMovment = [...new Map(rms?.list.map((item) => [item[key], item])).values()];
+  // const { status, data: rms } = useRmQuery();
+
+  const pageSize = 20;
+  const location = useLocation();
+  const pageParams = location.search.substr(location.search.length - 1);
+
+  const { status, data: rm } = useRmQuery({
+    limit: pageSize,
+    skip: Number(pageParams) * pageSize,
+    ...Filter.from({
+      $and: [
+        {
+          movment: Filter.regex(movment),
+        },
+      ],
+    }),
+  });
+
   return (
     <div>
       <Helmet title="Wod creator" />
@@ -31,7 +48,7 @@ const RmTrackerList = () => {
         <PageContent>
           <Link
             to={{
-              pathname: `/`,
+              pathname: `/rm-tracker`,
             }}
             tw="inline-flex items-center space-x-3 text-sm font-medium text-gray-100"
           >
@@ -39,7 +56,7 @@ const RmTrackerList = () => {
             <span>Retour</span>
           </Link>
 
-          {status === "success" && rms?.list.length === 0 ? (
+          {status === "success" && rm?.list.length === 0 ? (
             <EmptyState>
               <EmptyStateIllustration as={NotFoundIllustration} />
               <>
@@ -63,7 +80,7 @@ const RmTrackerList = () => {
 
                   {status === "success" && (
                     <div tw="sm:rounded-md">
-                      {rmsUniqueMovment
+                      {rm.list
                         .filter((rm) => rm?.createdBy.includes(user?.name))
                         .map((rm, index) => {
                           return (
@@ -71,7 +88,7 @@ const RmTrackerList = () => {
                               tw="hover:text-white cursor-pointer hover:bg-gray-50 shadow-sm overflow-hidden"
                               key={rm._id}
                             >
-                              <Link to={`/rm-tracker/${rm.movment}`}>
+                              <Link to={`/rm-tracker/${rm._id}`}>
                                 <RmTrackerListItem rm={rm} index={index} />
                               </Link>
                             </li>
@@ -92,4 +109,4 @@ const RmTrackerList = () => {
   );
 };
 
-export default RmTrackerList;
+export default RmTrackerByMovment;

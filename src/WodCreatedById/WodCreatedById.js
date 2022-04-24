@@ -8,7 +8,7 @@ import { ChevronLeftIcon, RefreshIcon, TrashIcon } from "@heroicons/react/solid"
 import { getInactifStatusColor } from "../wodcreator/WodCreatorListItem";
 import { Badge, BadgeDot } from "../shared/Badge";
 
-export const SingleWodCreated = () => {
+export const WodCreatedById = () => {
   const { wodId } = useParams();
   const navigate = useNavigate();
 
