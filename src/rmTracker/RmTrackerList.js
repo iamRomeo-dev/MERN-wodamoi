@@ -13,12 +13,15 @@ import {
 } from "../shared/EmptyState";
 import { NotFoundIllustration } from "../not-found/NotFoundIllustration";
 import { FloatButton, PrimaryButton } from "../shared/Buttons";
-import { WodCreatorListItemSkeleton } from "./WodCreatorListItemSkeleton";
-import { WodCreatorListItem } from "./WodCreatorListItem";
+import { WodCreatorListItemSkeleton } from "../wodcreator/WodCreatorListItemSkeleton";
+import { RmTrackerListItem } from "./RmTrackerListItem";
+import { useRmQuery } from "../APIsRmTracker";
+import { useAuth0 } from "@auth0/auth0-react";
 
-const WodCreator = () => {
+const RmTrackerList = () => {
+  const { user } = useAuth0();
   const loadingArray = 10;
-  const { status, data: wods } = useWodCreatorQuery();
+  const { status, data: rms } = useRmQuery();
   return (
     <div>
       <Helmet title="Wod creator" />
@@ -34,7 +37,7 @@ const WodCreator = () => {
             <span>Retour</span>
           </Link>
 
-          {status === "success" && wods?.list.length === 0 ? (
+          {status === "success" && rms?.list.length === 0 ? (
             <EmptyState>
               <EmptyStateIllustration as={NotFoundIllustration} />
               <>
@@ -58,25 +61,27 @@ const WodCreator = () => {
 
                   {status === "success" && (
                     <div tw="sm:rounded-md">
-                      {wods.list.map((wod, index) => {
-                        return (
-                          <li
-                            tw="hover:text-white cursor-pointer hover:bg-gray-50 shadow-sm overflow-hidden"
-                            key={wod._id}
-                          >
-                            <Link to={`/wod-creator/${wod._id}`}>
-                              <WodCreatorListItem wod={wod} index={index} />
-                            </Link>
-                          </li>
-                        );
-                      })}
+                      {rms.list
+                        .filter((rm) => rm?.createdBy.includes(user?.name))
+                        .map((rm, index) => {
+                          return (
+                            <li
+                              tw="hover:text-white cursor-pointer hover:bg-gray-50 shadow-sm overflow-hidden"
+                              key={rm._id}
+                            >
+                              <Link to={`/rm-tracker/${rm._id}`}>
+                                <RmTrackerListItem rm={rm} index={index} />
+                              </Link>
+                            </li>
+                          );
+                        })}
                     </div>
                   )}
                 </ul>
               </div>
             </>
           )}
-          <FloatButton as={Link} to="/wod-creator/creation" tw="">
+          <FloatButton as={Link} to="/rm-tracker/creation" tw="">
             <PlusIcon tw="h-12 w-10 text-gray-800" />
           </FloatButton>
         </PageContent>
@@ -85,4 +90,4 @@ const WodCreator = () => {
   );
 };
 
-export default WodCreator;
+export default RmTrackerList;

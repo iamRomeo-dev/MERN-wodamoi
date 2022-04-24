@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import "twin.macro";
-import { useWodCreatorMutation } from "../APIs";
+import { useWodCreatorMutation } from "../APIsWodCreator";
 import { Button, PrimaryButton, SquaredButton } from "../shared/Buttons";
 import { FieldsetLegend, FormGroup, HelperText, Label, RequiredAsterisk } from "../shared/Form";
 import { Page, PageContent } from "../shared/Page";
@@ -95,7 +95,7 @@ const WodCreatorCreation = () => {
         <PageContent tw="h-screen">
           <Link
             to={{
-              pathname: `/`,
+              pathname: `/wod-creator`,
             }}
             tw="inline-flex items-center space-x-3 text-sm font-medium text-gray-100"
           >

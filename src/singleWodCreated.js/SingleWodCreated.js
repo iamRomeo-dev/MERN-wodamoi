@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { Page, PageContent } from "../shared/Page";
 import "twin.macro";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { useDeleteWodCreated, useWodCreatedByIdQuery } from "../APIs";
+import { useDeleteWodCreated, useWodCreatedByIdQuery } from "../APIsWodCreator";
 import { ChevronLeftIcon, RefreshIcon, TrashIcon } from "@heroicons/react/solid";
 import { getInactifStatusColor } from "../wodcreator/WodCreatorListItem";
 import { Badge, BadgeDot } from "../shared/Badge";

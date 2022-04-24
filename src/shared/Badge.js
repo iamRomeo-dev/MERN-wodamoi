@@ -30,3 +30,7 @@ export const BadgeDot = (props) => {
     </svg>
   );
 };
+
+export const VerticalSignal = ({ color = "indigo", ...props }) => {
+  return <div tw="absolute rounded-md w-2 h-full" css={colors[color]} {...props}></div>;
+};

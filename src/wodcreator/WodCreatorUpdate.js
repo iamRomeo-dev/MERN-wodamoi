@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "twin.macro";
-import { useWodCreatedByIdQuery, useWodCreatorMutation, useWodCreatorPatchMutation } from "../APIs";
+import { useWodCreatedByIdQuery, useWodCreatorMutation, useWodCreatorPatchMutation } from "../APIsWodCreator";
 import { Button, FloatButton, PrimaryButton } from "../shared/Buttons";
 import { FieldsetLegend, FormGroup, HelperText, Label, RequiredAsterisk } from "../shared/Form";
 import { Page, PageContent } from "../shared/Page";

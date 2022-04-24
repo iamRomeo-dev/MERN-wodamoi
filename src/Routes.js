@@ -2,6 +2,7 @@ import { withAuthenticationRequired } from "@auth0/auth0-react";
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./home/Home";
+import RmTrackerCreation from "./rmTracker/RmTrackerCreation";
 import { Layout } from "./shared/Layout";
 import { PageSkeleton } from "./shared/Page";
 import { SingleWodCreated } from "./singleWodCreated.js/SingleWodCreated";
@@ -10,6 +11,7 @@ import WodCreatorCreation from "./wodcreator/WodCreatorCreation";
 import WodCreatorUpdate from "./wodcreator/WodCreatorUpdate";
 
 const NotFoundScreen = lazy(() => import("./not-found/NotFoundScreen"));
+const RmTrackerList = lazy(() => import("./rmTracker/RmTrackerList"));
 
 export const AppRoutes = withAuthenticationRequired(() => {
   return (
@@ -22,7 +24,8 @@ export const AppRoutes = withAuthenticationRequired(() => {
             <Route path="/wod-creator/:wodId/update" element={<WodCreatorUpdate />} />
             <Route path="/wod-creator/:wodId" element={<SingleWodCreated />} />
             <Route path="/wod-creator" element={<WodCreator />} />
-            <Route path="/rm-tracker" element={<WodCreator />} />
+            <Route path="/rm-tracker/creation" element={<RmTrackerCreation />} />
+            <Route path="/rm-tracker" element={<RmTrackerList />} />
             <Route path="*" element={<NotFoundScreen />} />
           </Routes>
         </Suspense>

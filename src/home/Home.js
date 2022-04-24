@@ -8,24 +8,6 @@ import { Link } from "react-router-dom";
 const Home = () => {
   const { t } = useTranslation();
 
-  const organizations = [
-    {
-      name: "louis-geneste",
-      image: "https://www.louisgeneste.com/wp-content/uploads/2020/05/logo.png",
-      description: "toto",
-    },
-    {
-      name: "maurice-naillet",
-      image: "https://www.mauricenailler.com/wp-content/uploads/2020/05/Maurice_Nailler.png",
-      description: "essai",
-    },
-    {
-      name: "maurice-naillet",
-      image: "https://www.mauricenailler.com/wp-content/uploads/2020/05/Maurice_Nailler.png",
-      description: "essai",
-    },
-  ];
-
   return (
     <div>
       <Helmet title={t("Dashboard.title")} />
@@ -37,7 +19,7 @@ const Home = () => {
                 <div tw="relative w-full h-full">
                   <div tw="w-4/6 md:w-3/6 lg:w-4/6 xl:w-3/6">
                     <span tw="text-2xl text-gray-800 font-bold">SEANCE COMPLETE</span>
-                    <p tw="text-base text-gray-500 font-medium">Crée ta propre séance de sport</p>
+                    <p tw="text-base text-gray-500 font-medium">Crée ta propre séance</p>
                   </div>
                 </div>
               </div>
@@ -52,7 +34,7 @@ const Home = () => {
                 </div>
               </div>
             </Link>
-            <Link to="" tw="mb-28">
+            <Link to={`/rm-tracker`} tw="mb-28">
               <div tw="bg-gray-100 rounded-md p-8 shadow-sm h-full">
                 <div tw="relative w-full h-full">
                   <div tw="w-4/6 md:w-3/6 lg:w-4/6 xl:w-3/6">

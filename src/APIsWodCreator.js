@@ -4,10 +4,10 @@ import qs from "qs";
 
 export const useWodCreatorQuery = (searchParams = {}) => {
   const api = useApi();
-  return useQuery([`v1/test`, searchParams], async () => {
+  return useQuery([`v1/wodCreator`, searchParams], async () => {
     const { limit = 10, skip = 0, sort = "-createdAt", ...query } = searchParams;
 
-    const response = await api.get(`v1/test`, {
+    const response = await api.get(`v1/wodCreator`, {
       searchParams: qs.stringify({
         limit,
         skip,
@@ -30,13 +30,13 @@ export const useWodCreatorMutation = () => {
   return useMutation({
     mutationFn: async (json = {}) => {
       return api
-        .post("v1/test", {
+        .post("v1/wodCreator", {
           json,
         })
         .json();
     },
     onSuccess: async () => {
-      await queryClient.invalidateQueries("v1/test");
+      await queryClient.invalidateQueries("v1/wodCreator");
     },
   });
 };
@@ -44,8 +44,8 @@ export const useWodCreatorMutation = () => {
 export const useWodCreatedByIdQuery = (uuid) => {
   const api = useApi();
   return useQuery({
-    queryKey: `v1/test/${uuid}`,
-    queryFn: async () => api.get(`v1/test/${uuid}`).json(),
+    queryKey: `v1/wodCreator/${uuid}`,
+    queryFn: async () => api.get(`v1/wodCreator/${uuid}`).json(),
   });
 };
 
@@ -55,13 +55,13 @@ export const useWodCreatorPatchMutation = (uuid) => {
   return useMutation({
     mutationFn: async (json = {}) => {
       return api
-        .patch(`v1/test/${uuid}`, {
+        .patch(`v1/wodCreator/${uuid}`, {
           json,
         })
         .json();
     },
     onSuccess: async () => {
-      await queryClient.invalidateQueries(`v1/test/${uuid}`);
+      await queryClient.invalidateQueries(`v1/wodCreator/${uuid}`);
     },
   });
 };
@@ -71,10 +71,10 @@ export const useDeleteWodCreated = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (uuid) => {
-      await api.delete(`v1/test/${uuid}`);
+      await api.delete(`v1/wodCreator/${uuid}`);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries("v1/test");
+      queryClient.invalidateQueries("v1/wodCreator");
     },
   });
 };
