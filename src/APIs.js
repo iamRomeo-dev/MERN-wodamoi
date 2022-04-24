@@ -61,7 +61,7 @@ export const useWodCreatorPatchMutation = (uuid) => {
         .json();
     },
     onSuccess: async () => {
-      await queryClient.invalidateQueries(`v1/timesheet/${uuid}`);
+      await queryClient.invalidateQueries(`v1/test/${uuid}`);
     },
   });
 };

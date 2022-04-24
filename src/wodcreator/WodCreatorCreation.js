@@ -39,18 +39,18 @@ function RightArrow() {
   );
 }
 
-const typeForWods = [
+export const typeForWods = [
   {
-    type: "METCON",
+    types: "METCON",
   },
   {
-    type: "AMRAP",
+    types: "AMRAP",
   },
   {
-    type: "FOR TIME",
+    types: "FOR TIME",
   },
   {
-    type: "EMOM",
+    types: "EMOM",
   },
 ];
 
@@ -64,11 +64,10 @@ const WodCreatorCreation = () => {
   const navigate = useNavigate();
   console.log(typeForWod);
   const onSubmit = (data) => {
+    console.log("create", typeof data.wodType);
     mutate(
       {
         ...data,
-        type: typeForWod,
-        time: timeForWod,
         MovementOne: clean,
       },
       {
@@ -79,15 +78,7 @@ const WodCreatorCreation = () => {
     );
   };
 
-  const { register, handleSubmit } = useForm({
-    defaultValues: {
-      name: "",
-      description: "",
-      MovementOne: "",
-      MovementTwo: "",
-      MovementThree: "",
-    },
-  });
+  const { register, handleSubmit } = useForm();
 
   function handleClick(e) {
     e.preventDefault();
@@ -177,21 +168,20 @@ const WodCreatorCreation = () => {
 
                 <div tw="grid grid-cols-2 gap-6">
                   <FormGroup tw="w-full">
-                    <Label htmlFor="typee">
+                    <Label htmlFor="wodType">
                       Type <RequiredAsterisk tw="text-red-500" />
                     </Label>
                     <div tw="mt-1 sm:mt-0 sm:col-span-2">
                       <select
-                        onChange={(e) => {
-                          setTypeForWod(e.target.value);
-                        }}
-                        id="typee"
-                        name="typee"
-                        tw="focus:ring-primary-500 focus:border-primary-500 shadow-sm sm:text-sm border-gray-300 rounded-md w-full"
+                        {...register("wodType")}
+                        id="wodType"
+                        name="wodType"
+                        defaultValue="AMRAP"
+                        tw="max-w-lg focus:ring-primary-500 focus:border-primary-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md pr-8"
                       >
                         {typeForWods.map((option, index) => (
-                          <option key={index} value={option._id}>
-                            {option.type}
+                          <option key={index} value={option.types}>
+                            {option.types}
                           </option>
                         ))}
                       </select>
@@ -202,12 +192,10 @@ const WodCreatorCreation = () => {
                     <Label htmlFor="time">Temps</Label>
                     <div tw="mt-1 sm:mt-0 sm:col-span-2">
                       <input
+                        {...register("time")}
                         tw="flex-1 block w-full text-sm z-0 focus:z-10 border-gray-300 rounded-md focus:(ring-indigo-500 border-indigo-500) disabled:(bg-gray-50 text-gray-500)"
                         type="number"
                         id="time"
-                        onChange={(e) => {
-                          setTimeForWod(e.target.value);
-                        }}
                         min="1"
                       ></input>
                     </div>

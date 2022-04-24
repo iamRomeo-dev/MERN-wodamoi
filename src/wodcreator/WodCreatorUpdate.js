@@ -13,16 +13,16 @@ import { Panel, PanelContent } from "../shared/Panel";
 
 const typeForWods = [
   {
-    type: "METCON",
+    types: "METCON",
   },
   {
-    type: "AMRAP",
+    types: "AMRAP",
   },
   {
-    type: "FOR TIME",
+    types: "FOR TIME",
   },
   {
-    type: "EMOM",
+    types: "EMOM",
   },
 ];
 
@@ -34,13 +34,11 @@ const WodCreatorUpdate = () => {
   console.log(wodById);
   const { mutate, isLoading: isSaving } = useWodCreatorPatchMutation(wodId);
   const navigate = useNavigate();
-  console.log(typeForWod);
+  console.log("eeee", wodById.types);
   const onSubmit = (data) => {
     mutate(
       {
         ...data,
-        type: typeForWod,
-        time: timeForWod,
       },
       {
         onSuccess: () => {
@@ -58,7 +56,7 @@ const WodCreatorUpdate = () => {
       MovementTwo: wodById?.MovementTwo,
       MovementThree: wodById?.MovementThree,
       time: wodById?.time,
-      type: wodById?.type,
+      wodType: wodById?.wodType,
     },
   });
 
@@ -81,25 +79,25 @@ const WodCreatorUpdate = () => {
               <PanelContent>
                 <FieldsetLegend>Met à jour ton wod</FieldsetLegend>
                 <HelperText>Informations générales le workout de ton choix.</HelperText>
+                {status === "success" && (
+                  <div tw="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6">
+                    <FormGroup>
+                      <Label htmlFor="name">Nom</Label>
+                      <input
+                        tw="flex-1 block w-full text-sm z-0 focus:z-10 border-gray-300 rounded-md focus:(ring-indigo-500 border-indigo-500) disabled:(bg-gray-50 text-gray-500)"
+                        {...register("name")}
+                        type="text"
+                        id="name"
+                      />
+                    </FormGroup>
 
-                <div tw="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6">
-                  <FormGroup>
-                    <Label htmlFor="name">Nom</Label>
-                    <input
-                      tw="flex-1 block w-full text-sm z-0 focus:z-10 border-gray-300 rounded-md focus:(ring-indigo-500 border-indigo-500) disabled:(bg-gray-50 text-gray-500)"
-                      {...register("name")}
-                      type="text"
-                      id="name"
-                    />
-                  </FormGroup>
-
-                  <div tw="grid grid-cols-2 gap-6">
-                    <FormGroup tw="w-full">
-                      <Label htmlFor="typee">
-                        Type <RequiredAsterisk tw="text-red-500" />
-                      </Label>
-                      <div tw="mt-1 sm:mt-0 sm:col-span-2">
-                        <select
+                    <div tw="grid grid-cols-2 gap-6">
+                      <FormGroup tw="w-full">
+                        <Label htmlFor="wodType">
+                          Type <RequiredAsterisk tw="text-red-500" />
+                        </Label>
+                        <div tw="mt-1 sm:mt-0 sm:col-span-2">
+                          {/* <select
                           onChange={(e) => {
                             setTypeForWod(e.target.value);
                           }}
@@ -110,39 +108,53 @@ const WodCreatorUpdate = () => {
                         >
                           {typeForWods.map((option, index) => (
                             <option key={index} defaultValue="toto" value={option._id}>
-                              {option.type}
+                              {option.types}
                             </option>
                           ))}
-                        </select>
-                      </div>
-                    </FormGroup>
+                        </select> */}
+                          <select
+                            {...register("wodType")}
+                            id="wodType"
+                            name="wodType"
+                            defaultValue={wodById.wodType}
+                            tw="max-w-lg focus:ring-primary-500 focus:border-primary-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md pr-8"
+                          >
+                            {typeForWods.map((option, index) => (
+                              <option key={index} value={option._id}>
+                                {option.types}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                      </FormGroup>
+
+                      <FormGroup>
+                        <Label htmlFor="time">Temps</Label>
+                        <div tw="mt-1 sm:mt-0 sm:col-span-2">
+                          <input
+                            {...register("time")}
+                            tw="flex-1 block w-full text-sm z-0 focus:z-10 border-gray-300 rounded-md focus:(ring-indigo-500 border-indigo-500) disabled:(bg-gray-50 text-gray-500)"
+                            type="number"
+                            defaultValue={wodById.time}
+                            id="time"
+                            min="1"
+                          ></input>
+                        </div>
+                      </FormGroup>
+                    </div>
 
                     <FormGroup>
-                      <Label htmlFor="time">Temps</Label>
-                      <div tw="mt-1 sm:mt-0 sm:col-span-2">
-                        <input
-                          tw="flex-1 block w-full text-sm z-0 focus:z-10 border-gray-300 rounded-md focus:(ring-indigo-500 border-indigo-500) disabled:(bg-gray-50 text-gray-500)"
-                          type="number"
-                          id="time"
-                          onChange={(e) => {
-                            setTimeForWod(e.target.value);
-                          }}
-                          min="1"
-                        ></input>
-                      </div>
+                      <Label htmlFor="description">Description</Label>
+                      <textarea
+                        tw="flex-1 block w-full h-32 text-sm z-0 focus:z-10 border-gray-300 rounded-md focus:(ring-indigo-500 border-indigo-500) disabled:(bg-gray-50 text-gray-500)"
+                        {...register("description")}
+                        type="text"
+                        id="description"
+                      />
                     </FormGroup>
                   </div>
+                )}
 
-                  <FormGroup>
-                    <Label htmlFor="description">Description</Label>
-                    <textarea
-                      tw="flex-1 block w-full h-32 text-sm z-0 focus:z-10 border-gray-300 rounded-md focus:(ring-indigo-500 border-indigo-500) disabled:(bg-gray-50 text-gray-500)"
-                      {...register("description")}
-                      type="text"
-                      id="description"
-                    />
-                  </FormGroup>
-                </div>
                 <div tw="flex space-x-3 items-center justify-end mt-8">
                   <Button as={Link} to={`/wod-creator/${wodId}`} disable={isSaving}>
                     Annuler
