@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import "twin.macro";
-import { useNavigate } from "react-router-dom";
 import { Badge, VerticalSignal } from "../shared/Badge";
 import { StartDate } from "../shared/Date";
 
@@ -19,7 +18,7 @@ export const getInactifStatusColor = (inactifStatus) => {
   }
 };
 
-export const RmTrackerListItem = ({ rm, props }) => {
+export const RmTrackerListItem = ({ rm }) => {
   const color = getInactifStatusColor(rm.movment);
 
   console.log("eoeeo", rm);

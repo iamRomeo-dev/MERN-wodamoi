@@ -45,10 +45,10 @@ const RmTrackerList = () => {
               <>
                 <EmptyStateTitle as="h3">Il n'y a pas de wod</EmptyStateTitle>
                 <EmptyStateDescription>
-                  Créer le premier wod en cliquant sur le bouton ci-dessous.
+                  Créer le premier RM en cliquant sur le bouton ci-dessous.
                 </EmptyStateDescription>
-                <PrimaryButton as={Link} to="/wod-creator/creation" tw="mt-8">
-                  Crée ton premier wod
+                <PrimaryButton as={Link} to="/rm-tracker/creation" tw="mt-8">
+                  Crée ton premier RM
                 </PrimaryButton>
               </>
             </EmptyState>
