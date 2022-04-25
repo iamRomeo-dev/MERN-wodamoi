@@ -14,7 +14,6 @@ import RmTrackerChart from "./RmTrackerChart";
 
 const RmTrackerByMovment = () => {
   const { movment } = useParams();
-  console.log(movment);
   const { user } = useAuth0();
   const loadingArray = 10;
 
@@ -39,7 +38,6 @@ const RmTrackerByMovment = () => {
       <Helmet title="Wod creator" />
       <Page tw="relative">
         <PageContent>
-          <RmTrackerChart />
           <Link
             to={{
               pathname: `/rm-tracker`,
@@ -49,6 +47,7 @@ const RmTrackerByMovment = () => {
             <ChevronLeftIcon tw="-ml-2 h-5 w-5 text-gray-100" aria-hidden="true" />
             <span>Retour</span>
           </Link>
+          <RmTrackerChart />
           <div tw="w-full bg-white rounded-md shadow-sm mt-6">
             <ul tw="divide-y-2 divide-gray-100">
               {status === "loading" &&
@@ -63,12 +62,10 @@ const RmTrackerByMovment = () => {
                     .map((rm, index) => {
                       return (
                         <li
-                          tw="hover:text-white cursor-pointer hover:bg-gray-50 shadow-sm overflow-hidden"
+                          tw="hover:text-white hover:bg-gray-50 shadow-sm overflow-hidden"
                           key={rm._id}
                         >
-                          <Link to={`/rm-tracker/${rm._id}`}>
-                            <RmTrackerListItem rm={rm} index={index} />
-                          </Link>
+                          <RmTrackerListItem rm={rm} index={index} />
                         </li>
                       );
                     })}
