@@ -23,7 +23,14 @@ const RmTrackerList = () => {
   const { status, data: rms } = useRmQuery();
   // Sort the array in order to keep only unique objects with the same movment value
   const key = "movment";
-  const rmsUniqueMovment = [...new Map(rms?.list.map((item) => [item[key], item])).values()];
+  const rmsUniqueMovment = [
+    ...new Map(
+      rms?.list
+        .map((item) => item)
+        .reverse()
+        .map((item) => [item[key], item])
+    ).values(),
+  ];
   return (
     <div>
       <Helmet title="Wod creator" />
@@ -76,7 +83,8 @@ const RmTrackerList = () => {
                               </Link>
                             </li>
                           );
-                        })}
+                        })
+                        .reverse()}
                     </div>
                   )}
                 </ul>

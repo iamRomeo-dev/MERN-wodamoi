@@ -27,8 +27,9 @@ export const RmTrackerListItem = ({ rm }) => {
       <div tw="px-4 py-4 sm:px-6">
         <div tw="flex items-center justify-between">
           <p tw="text-sm font-medium text-gray-700 truncate">{rm.movment.toUpperCase()}</p>
-          <p tw="text-sm font-medium text-gray-400 truncate">{rm.weight.toUpperCase()} kg</p>
+
           <div tw="ml-2 flex-shrink-0 flex">
+            <p tw="text-sm font-medium text-gray-400 truncate mr-4">{rm.weight.toUpperCase()} kg</p>
             <Badge status={rm.movment}>
               <StartDate start={rm.createdAt} />
             </Badge>
