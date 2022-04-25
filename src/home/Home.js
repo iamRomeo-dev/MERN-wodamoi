@@ -18,7 +18,7 @@ const Home = () => {
               <div tw="bg-gray-100 rounded-md p-8 shadow-sm h-full">
                 <div tw="relative w-full h-full">
                   <div tw="w-4/6 md:w-3/6 lg:w-4/6 xl:w-3/6">
-                    <span tw="text-2xl text-gray-800 font-bold">SEANCE COMPLETE</span>
+                    <span tw="text-2xl text-gray-800 font-bold">SEANCE</span>
                     <p tw="text-base text-gray-500 font-medium">Crée ta propre séance</p>
                   </div>
                 </div>
@@ -29,7 +29,7 @@ const Home = () => {
                 <div tw="relative w-full h-full">
                   <div tw="w-4/6 md:w-3/6 lg:w-4/6 xl:w-3/6">
                     <span tw="text-2xl text-gray-800 font-bold">WOD CREATOR</span>
-                    <p tw="text-base text-gray-500 font-medium">Crée ton propre wod</p>
+                    <p tw="text-base text-gray-500 font-medium">Crée tes propre wods</p>
                   </div>
                 </div>
               </div>
@@ -39,7 +39,7 @@ const Home = () => {
                 <div tw="relative w-full h-full">
                   <div tw="w-4/6 md:w-3/6 lg:w-4/6 xl:w-3/6">
                     <span tw="text-2xl text-gray-800 font-bold">RM TRACKER</span>
-                    <p tw="text-base text-gray-500 font-medium">Enregistre tes meilleur perfs !</p>
+                    <p tw="text-base text-gray-500 font-medium">Enregistre tes PR</p>
                   </div>
                 </div>
               </div>
