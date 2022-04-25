@@ -32,7 +32,6 @@ const RmTrackerCreation = () => {
 
   const navigate = useNavigate();
   const onSubmit = (data) => {
-    console.log("create", data);
     mutate(
       {
         ...data,

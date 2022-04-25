@@ -1,12 +1,11 @@
 /** @jsxImportSource @emotion/react */
-import { ChevronLeftIcon, PlusIcon } from "@heroicons/react/solid";
-import { useState, useEffect } from "react";
+import { ChevronLeftIcon } from "@heroicons/react/solid";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "twin.macro";
-import { useWodCreatedByIdQuery, useWodCreatorMutation, useWodCreatorPatchMutation } from "../APIsWodCreator";
-import { Button, FloatButton, PrimaryButton } from "../shared/Buttons";
+import { useWodCreatedByIdQuery, useWodCreatorPatchMutation } from "../APIsWodCreator";
+import { Button, PrimaryButton } from "../shared/Buttons";
 import { FieldsetLegend, FormGroup, HelperText, Label, RequiredAsterisk } from "../shared/Form";
 import { Page, PageContent } from "../shared/Page";
 import { Panel, PanelContent } from "../shared/Panel";
@@ -29,12 +28,8 @@ const typeForWods = [
 const WodCreatorUpdate = () => {
   const { wodId } = useParams();
   const { status, data: wodById } = useWodCreatedByIdQuery(wodId);
-  const [typeForWod, setTypeForWod] = useState(wodById?.type);
-  const [timeForWod, setTimeForWod] = useState(wodById?.time);
-  console.log(wodById);
   const { mutate, isLoading: isSaving } = useWodCreatorPatchMutation(wodId);
   const navigate = useNavigate();
-  console.log("eeee", wodById.types);
   const onSubmit = (data) => {
     mutate(
       {

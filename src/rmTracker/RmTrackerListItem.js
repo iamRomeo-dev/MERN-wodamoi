@@ -21,9 +21,8 @@ export const getInactifStatusColor = (inactifStatus) => {
 export const RmTrackerListItem = ({ rm }) => {
   const color = getInactifStatusColor(rm.movment);
 
-  console.log("eoeeo", rm);
   return (
-    <div tw="relative hover:bg-gray-50 cursor-pointer">
+    <div tw="relative hover:bg-gray-50">
       <VerticalSignal color={color} />
       <div tw="px-4 py-4 sm:px-6">
         <div tw="flex items-center justify-between">

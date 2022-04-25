@@ -55,16 +55,11 @@ export const typeForWods = [
 ];
 
 const WodCreatorCreation = () => {
-  const [typeForWod, setTypeForWod] = useState();
-  const [timeForWod, setTimeForWod] = useState();
   const [clean, setClean] = useState(false);
-  console.log("clean", clean);
 
   const { mutate, isLoading: isSaving } = useWodCreatorMutation();
   const navigate = useNavigate();
-  console.log(typeForWod);
   const onSubmit = (data) => {
-    console.log("create", typeof data.wodType);
     mutate(
       {
         ...data,
