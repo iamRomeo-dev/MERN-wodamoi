@@ -7,27 +7,16 @@ import { Button, PrimaryButton } from "../shared/Buttons";
 import { FieldsetLegend, FormGroup, HelperText, Label, RequiredAsterisk } from "../shared/Form";
 import { Page, PageContent } from "../shared/Page";
 import { PanelContent } from "../shared/Panel";
-import { ChevronLeftIcon } from "@heroicons/react/solid";
-import { useRmMutation } from "../APIsRmTracker";
+import { ChevronLeftIcon, FireIcon } from "@heroicons/react/solid";
+import { useRmMutation, useRmQuery } from "../APIsRmTracker";
 import { useAuth0 } from "@auth0/auth0-react";
-
-export const movments = [
-  {
-    types: "deadlift",
-  },
-  {
-    types: "push press",
-  },
-  {
-    types: "bench press",
-  },
-  {
-    types: "biceps curl",
-  },
-];
+import { useState } from "react";
+import tw from "twin.macro";
 
 const RmTrackerCreation = () => {
   const { user } = useAuth0();
+  const [isNew, setIsNew] = useState(false);
+  console.log(isNew);
   const { mutate, isLoading: isSaving } = useRmMutation();
 
   const navigate = useNavigate();
@@ -47,6 +36,13 @@ const RmTrackerCreation = () => {
 
   const { register, handleSubmit } = useForm();
 
+  const { data: rms } = useRmQuery();
+
+  let movments = [];
+  for (var i = 0; i < rms?.list.length; i++) {
+    movments.push(rms?.list[i].movment);
+  }
+  const setMovments = [...new Set(movments)];
   return (
     <>
       <Helmet title="Crée ton rm" />
@@ -62,41 +58,47 @@ const RmTrackerCreation = () => {
             <span>Retour</span>
           </Link>
           <form onSubmit={handleSubmit(onSubmit)}>
-            {/* <Panel> */}
             <PanelContent>
               <FieldsetLegend>Crée ton rm</FieldsetLegend>
               <HelperText>Informations générales concernant le workout de ton choix.</HelperText>
-
+              <div tw="flex items-center justify-center gap-2 mt-2">
+                {isNew === true && <p tw="text-pink-200">WOD</p>}
+                <FireIcon
+                  tw="h-10 w-auto text-white"
+                  css={isNew && tw`text-pink-300`}
+                  onClick={() => setIsNew(!isNew)}
+                />
+                {isNew === true && <p tw="text-pink-200">MOI</p>}
+              </div>
               <div tw="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6">
-                {/* <FormGroup>
-                  <Label htmlFor="name">Nom</Label>
-                  <input
-                    tw="flex-1 block w-full text-sm z-0 focus:z-10 border-gray-300 rounded-md focus:(ring-indigo-500 border-indigo-500) disabled:(bg-gray-50 text-gray-500)"
-                    {...register("name")}
-                    type="text"
-                    id="name"
-                  />
-                </FormGroup> */}
-
                 <div tw="grid grid-cols-2 gap-6">
                   <FormGroup tw="w-full">
                     <Label htmlFor="movment">
                       Mouvement <RequiredAsterisk tw="text-red-500" />
                     </Label>
                     <div tw="mt-1 sm:mt-0 sm:col-span-2">
-                      <select
-                        {...register("movment")}
-                        id="movment"
-                        name="movment"
-                        // defaultValue="AMRAP"
-                        tw="max-w-lg focus:ring-primary-500 focus:border-primary-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md pr-8"
-                      >
-                        {movments.map((option, index) => (
-                          <option key={index} value={option.types}>
-                            {option.types}
-                          </option>
-                        ))}
-                      </select>
+                      {isNew === false ? (
+                        <select
+                          {...register("movment")}
+                          id="movment"
+                          name="movment"
+                          defaultValue="AMRAP"
+                          tw="max-w-lg focus:ring-primary-500 focus:border-primary-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md pr-8"
+                        >
+                          {setMovments.map((option, index) => (
+                            <option key={index} value={option}>
+                              {option}
+                            </option>
+                          ))}
+                        </select>
+                      ) : (
+                        <input
+                          tw="flex-1 block w-full text-sm z-0 focus:z-10 border-gray-300 rounded-md focus:(ring-indigo-500 border-indigo-500) disabled:(bg-gray-50 text-gray-500)"
+                          {...register("movment")}
+                          type="text"
+                          id="movment"
+                        />
+                      )}
                     </div>
                   </FormGroup>
 
@@ -123,7 +125,6 @@ const RmTrackerCreation = () => {
                 </PrimaryButton>
               </div>
             </PanelContent>
-            {/* </Panel> */}
           </form>
         </PageContent>
       </Page>
