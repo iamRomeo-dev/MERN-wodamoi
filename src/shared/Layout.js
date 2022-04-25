@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import tw from "twin.macro";
 import { Transition } from "../shared/Transition";
-import { BellOutlineIcon, HomeOutlineIcon, SearchSolidIcon } from "./Icons";
+import { HomeOutlineIcon, SearchSolidIcon } from "./Icons";
 import { OpenSidebarButton, Sidebar, SidebarHeader, SidebarNavLink } from "./Sidebar";
 
 const SearchBar = () => {
@@ -111,16 +111,6 @@ const ProfileDropdown = () => {
   );
 };
 
-const NotificationButton = () => {
-  const { t } = useTranslation();
-  return (
-    <button tw="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:(outline-none ring-2 ring-offset-2 ring-indigo-500)">
-      <span tw="sr-only">{t("Layout.notifications")}</span>
-      <BellOutlineIcon tw="h-6 w-6" />
-    </button>
-  );
-};
-
 const Navbar = ({ start, center, end }) => {
   return (
     <header tw="relative z-10 flex-shrink-0 flex h-16 bg-white shadow">
@@ -160,7 +150,6 @@ export const Layout = ({ children }) => {
             center={<SearchBar />}
             end={
               <>
-                <NotificationButton />
                 <ProfileDropdown />
               </>
             }
