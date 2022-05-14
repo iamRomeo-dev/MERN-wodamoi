@@ -3,7 +3,6 @@ import "twin.macro";
 import HashtagIcon from "@heroicons/react/outline/HashtagIcon";
 import GlobeAltIcon from "@heroicons/react/outline/GlobeAltIcon";
 import IdentificationIcon from "@heroicons/react/outline/IdentificationIcon";
-import { useParams } from "react-router-dom";
 import { Badge, BadgeDot } from "../shared/Badge";
 
 export const getInactifStatusColor = (inactifStatus) => {
@@ -22,7 +21,6 @@ export const getInactifStatusColor = (inactifStatus) => {
 };
 
 export const WodCreatorListItem = ({ wod, props }) => {
-  const { workSiteId } = useParams();
   const color = getInactifStatusColor(wod.type);
 
   return (
