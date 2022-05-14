@@ -37,7 +37,7 @@ export const SidebarHeader = () => {
   return (
     <header tw="flex-shrink-0 flex items-center justify-center px-4">
       <Link to="/" tw="flex flex-col">
-        <WodamoiIcon tw="w-28 h-auto" />
+        <WodamoiIcon tw="w-28 h-auto" bgColor={"black"} />
       </Link>
     </header>
   );

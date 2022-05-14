@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Page, PageContent } from "../shared/Page";
 import "twin.macro";
 import { Link } from "react-router-dom";
+import { WodamoiIcon } from "../shared/Icons";
 
 const Home = () => {
   const { t } = useTranslation();
@@ -15,7 +16,8 @@ const Home = () => {
         <PageContent>
           <div tw="grid grid-cols-1 lg:grid-cols-3 gap-y-4 md:gap-x-2 w-full lg:w-2/3 min-h-screen">
             <Link to="/full-training">
-              <div tw="bg-gray-100 rounded-md p-8 shadow-sm h-full">
+              <div tw="relative overflow-hidden bg-gray-100 rounded-md p-8 shadow-sm h-full">
+                <WodamoiIcon tw="absolute -right-10 w-64 h-auto opacity-50" bgColor={"#0c4a6e"} />
                 <div tw="relative w-full h-full">
                   <div tw="w-4/6 md:w-3/6 lg:w-4/6 xl:w-3/6">
                     <span tw="text-2xl text-gray-800 font-bold">SEANCE</span>
@@ -25,7 +27,8 @@ const Home = () => {
               </div>
             </Link>
             <Link to={`/wod-creator`}>
-              <div tw="bg-gray-100 rounded-md p-8 shadow-sm h-full">
+              <div tw="relative overflow-hidden bg-gray-100 rounded-md p-8 shadow-sm h-full">
+                <WodamoiIcon tw="absolute -right-10 w-64 h-auto opacity-50" bgColor={"#075985"} />
                 <div tw="relative w-full h-full">
                   <div tw="w-4/6 md:w-3/6 lg:w-4/6 xl:w-3/6">
                     <span tw="text-2xl text-gray-800 font-bold">WOD CREATOR</span>
@@ -35,7 +38,8 @@ const Home = () => {
               </div>
             </Link>
             <Link to={`/rm-tracker`} tw="mb-28">
-              <div tw="bg-gray-100 rounded-md p-8 shadow-sm h-full">
+              <div tw="relative overflow-hidden bg-gray-100 rounded-md p-8 shadow-sm h-full">
+                <WodamoiIcon tw="absolute -right-10 w-64 h-auto opacity-50" bgColor={"#0369a1"} />
                 <div tw="relative w-full h-full">
                   <div tw="w-4/6 md:w-3/6 lg:w-4/6 xl:w-3/6">
                     <span tw="text-2xl text-gray-800 font-bold">RM TRACKER</span>

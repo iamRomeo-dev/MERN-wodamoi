@@ -10,6 +10,7 @@ import tw from "twin.macro";
 import { Transition } from "../shared/Transition";
 import { HomeOutlineIcon, SearchSolidIcon } from "./Icons";
 import { OpenSidebarButton, Sidebar, SidebarHeader, SidebarNavLink } from "./Sidebar";
+import { FireIcon, PencilAltIcon, PencilIcon } from "@heroicons/react/solid";
 
 const SearchBar = () => {
   const { t } = useTranslation();
@@ -124,7 +125,6 @@ const Navbar = ({ start, center, end }) => {
 };
 
 export const Layout = ({ children }) => {
-  const { t } = useTranslation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const openSidebar = useCallback(() => setIsSidebarOpen(true), []);
   const closeSidebar = useCallback(() => setIsSidebarOpen(false), []);
@@ -135,11 +135,19 @@ export const Layout = ({ children }) => {
         <Sidebar isOpen={isSidebarOpen} onDismiss={closeSidebar} header={<SidebarHeader />}>
           <SidebarNavLink to="/" exact="true">
             <HomeOutlineIcon />
-            {t("Layout.dashboard")}
+            Accueil
           </SidebarNavLink>
           <SidebarNavLink to="/seance-complete" exact="true">
-            <HomeOutlineIcon />
+            <PencilIcon />
             Seance complete
+          </SidebarNavLink>
+          <SidebarNavLink to="/wod-creator" exact="true">
+            <PencilIcon />
+            Wod creator
+          </SidebarNavLink>
+          <SidebarNavLink to="/rm-tracker" exact="true">
+            <FireIcon />
+            Rm tracker
           </SidebarNavLink>
         </Sidebar>
 
