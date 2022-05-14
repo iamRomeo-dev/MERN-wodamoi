@@ -40,7 +40,7 @@ export const RmTrackerListItem = ({ rm }) => {
                 <BanIcon tw="text-white" />
               </span>
             )}
-            <p tw="text-sm font-medium text-gray-700 truncate">{rm.movment.toUpperCase()}</p>
+            <p tw="text-sm font-medium text-gray-700 truncate w-48">{rm.movment.toUpperCase()}</p>
           </div>
 
           <div tw="ml-2 flex-shrink-0 flex">
