@@ -16,7 +16,6 @@ import tw from "twin.macro";
 const RmTrackerCreation = () => {
   const { user } = useAuth0();
   const [isNew, setIsNew] = useState(false);
-  console.log(isNew);
   const { mutate, isLoading: isSaving } = useRmMutation();
 
   const navigate = useNavigate();
@@ -83,7 +82,7 @@ const RmTrackerCreation = () => {
                           id="movment"
                           name="movment"
                           defaultValue="AMRAP"
-                          tw="max-w-lg focus:ring-primary-500 focus:border-primary-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md pr-8"
+                          tw="w-full focus:ring-primary-500 focus:border-primary-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md pr-8"
                         >
                           {setMovments.map((option, index) => (
                             <option key={index} value={option}>
@@ -111,6 +110,7 @@ const RmTrackerCreation = () => {
                         type="number"
                         id="weight"
                         min="1"
+                        step=".01"
                       ></input>
                     </div>
                   </FormGroup>

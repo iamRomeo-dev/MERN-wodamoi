@@ -2,7 +2,7 @@
 import { Helmet } from "react-helmet-async";
 import { Page, PageContent } from "../shared/Page";
 import "twin.macro";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ChevronLeftIcon, PlusIcon } from "@heroicons/react/solid";
 import {
   EmptyState,
@@ -12,15 +12,29 @@ import {
 } from "../shared/EmptyState";
 import { NotFoundIllustration } from "../not-found/NotFoundIllustration";
 import { FloatButton, PrimaryButton } from "../shared/Buttons";
-import { WodCreatorListItemSkeleton } from "../wodcreator/WodCreatorListItemSkeleton";
 import { RmTrackerListItem } from "./RmTrackerListItem";
 import { useRmQuery } from "../APIsRmTracker";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Filter } from "../shared/QueryHelper";
+import { Spinner } from "../shared/Spinner";
 
 const RmTrackerList = () => {
   const { user } = useAuth0();
-  const loadingArray = 10;
-  const { status, data: rms } = useRmQuery();
+  const location = useLocation();
+  const pageSize = 20;
+  const pageParams = location.search.substr(location.search.length - 1);
+
+  const { status, data: rms } = useRmQuery({
+    limit: pageSize,
+    skip: Number(pageParams) * pageSize,
+    ...Filter.from({
+      $and: [
+        {
+          createdBy: Filter.regex(user.name),
+        },
+      ],
+    }),
+  });
   // Sort the array in order to keep only unique objects with the same movment value
   const key = "movment";
   const rmsUniqueMovment = [
@@ -31,6 +45,7 @@ const RmTrackerList = () => {
         .map((item) => [item[key], item])
     ).values(),
   ];
+
   return (
     <div>
       <Helmet title="Wod creator" />
@@ -45,7 +60,6 @@ const RmTrackerList = () => {
             <ChevronLeftIcon tw="-ml-2 h-5 w-5 text-gray-100" aria-hidden="true" />
             <span>Retour</span>
           </Link>
-
           {status === "success" && rms?.list.length === 0 ? (
             <EmptyState>
               <EmptyStateIllustration as={NotFoundIllustration} />
@@ -63,15 +77,10 @@ const RmTrackerList = () => {
             <>
               <div tw="w-full bg-white rounded-md shadow-sm mt-6">
                 <ul tw="divide-y-2 divide-gray-100">
-                  {status === "loading" &&
-                    [...Array(loadingArray)].map((e, index) => (
-                      <WodCreatorListItemSkeleton index={index} key={index} />
-                    ))}
-
+                  {status === "loading" && <Spinner tw="h-10 w-10 fixed left-1/2 top-1/2" />}
                   {status === "success" && (
                     <div tw="sm:rounded-md">
                       {rmsUniqueMovment
-                        .filter((rm) => rm?.createdBy.includes(user?.name))
                         .map((rm, index) => {
                           return (
                             <li

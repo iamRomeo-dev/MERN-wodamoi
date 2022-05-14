@@ -29,10 +29,12 @@ const RmTrackerByMovment = () => {
         {
           movment: Filter.regex(movment),
         },
+        {
+          createdBy: Filter.regex(user.name),
+        },
       ],
     }),
   });
-
   return (
     <div>
       <Helmet title="Wod creator" />
@@ -57,18 +59,16 @@ const RmTrackerByMovment = () => {
 
               {status === "success" && (
                 <div tw="sm:rounded-md">
-                  {rm.list
-                    .filter((rm) => rm?.createdBy.includes(user?.name))
-                    .map((rm, index) => {
-                      return (
-                        <li
-                          tw="hover:text-white hover:bg-gray-50 shadow-sm overflow-hidden"
-                          key={rm._id}
-                        >
-                          <RmTrackerListItem rm={rm} index={index} />
-                        </li>
-                      );
-                    })}
+                  {rm.list.map((rm, index) => {
+                    return (
+                      <li
+                        tw="hover:text-white hover:bg-gray-50 shadow-sm overflow-hidden"
+                        key={rm._id}
+                      >
+                        <RmTrackerListItem rm={rm} index={index} />
+                      </li>
+                    );
+                  })}
                 </div>
               )}
             </ul>
