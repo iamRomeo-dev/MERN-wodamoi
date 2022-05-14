@@ -14,7 +14,7 @@ const Home = () => {
       <Page tw="relative">
         <PageContent>
           <div tw="grid grid-cols-1 lg:grid-cols-3 gap-y-4 md:gap-x-2 w-full lg:w-2/3 min-h-screen">
-            <Link to="">
+            <Link to="/full-training">
               <div tw="bg-gray-100 rounded-md p-8 shadow-sm h-full">
                 <div tw="relative w-full h-full">
                   <div tw="w-4/6 md:w-3/6 lg:w-4/6 xl:w-3/6">

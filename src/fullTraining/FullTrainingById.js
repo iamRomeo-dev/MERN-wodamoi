@@ -1,35 +1,31 @@
 /** @jsxImportSource @emotion/react */
 import { Helmet } from "react-helmet-async";
-import { Page, PageContent } from "../shared/Page";
 import "twin.macro";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { useDeleteWodCreated, useWodCreatedByIdQuery } from "../APIsWodCreator";
 import { ChevronLeftIcon, RefreshIcon, TrashIcon } from "@heroicons/react/solid";
-import { getInactifStatusColor } from "../wodcreator/WodCreatorListItem";
-import { Badge, BadgeDot } from "../shared/Badge";
+import { Page, PageContent } from "../shared/Page";
+import { useDeleteFullTraining, useFullTrainingByIdQuery } from "../APIsFullTraining";
 
-const WodCreatedById = () => {
-  const { wodId } = useParams();
+const FullTrainingById = () => {
+  const { fullTrainingId } = useParams();
   const navigate = useNavigate();
 
-  const { status, data: dataWorkSiteById } = useWodCreatedByIdQuery(wodId);
-  const { mutateAsync: deleteWod } = useDeleteWodCreated();
-
-  const color = getInactifStatusColor(dataWorkSiteById?.type);
-
+  const { status, data: fullTrainingById } = useFullTrainingByIdQuery(fullTrainingId);
+  const { mutateAsync: deleteFullTraining } = useDeleteFullTraining();
+  console.log("fullTrainingByIdeee", fullTrainingById);
   const onRemove = (e) => {
     e.preventDefault();
-    deleteWod(wodId);
-    navigate(`/wod-creator`);
+    deleteFullTraining(fullTrainingId);
+    navigate(`/full-training`);
   };
   return (
     <div>
-      <Helmet title={status === "success" ? dataWorkSiteById?.name : "Wod sélectionné"} />
+      <Helmet title={status === "success" ? fullTrainingById?.name : "Séance sélectionné"} />
       <Page tw="relative">
         <PageContent>
           <Link
             to={{
-              pathname: `/wod-creator`,
+              pathname: `/full-training`,
             }}
             tw="inline-flex items-center space-x-3 text-sm font-medium text-gray-100"
           >
@@ -41,26 +37,16 @@ const WodCreatedById = () => {
             <div tw="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200 mt-6">
               <div tw="flex-1 flex flex-col p-8">
                 <h3 tw="mt-6 text-gray-900 text-sm font-medium">
-                  {dataWorkSiteById?.name && dataWorkSiteById.name}
+                  {fullTrainingById?.name && fullTrainingById.name}
                 </h3>
                 <dl tw="mt-1 flex-grow flex flex-col justify-between">
                   <dt tw="sr-only">Title</dt>
 
-                  {dataWorkSiteById.type && (
-                    <div tw="flex items-center justify-center gap-1 text-sm text-gray-500">
-                      <Badge color={color}>
-                        <BadgeDot />
-                        {dataWorkSiteById?.type}{" "}
-                        {dataWorkSiteById.time && dataWorkSiteById.time + " min"}
-                      </Badge>
-                    </div>
-                  )}
-
                   <dt tw="sr-only">Role</dt>
                   <dd tw="mt-3">
                     <span tw="px-2 py-1 text-green-800 text-xs font-medium bg-green-100 rounded-full">
-                      {dataWorkSiteById.description &&
-                        dataWorkSiteById.description.split("\n").map((str) => <p>{str}</p>)}
+                      {fullTrainingById.description &&
+                        fullTrainingById.description.split("\n").map((str) => <p>{str}</p>)}
                     </span>
                   </dd>
                 </dl>
@@ -78,7 +64,7 @@ const WodCreatedById = () => {
                   </div>
                   <div tw="-ml-px w-0 flex-1 flex">
                     <Link
-                      to={`/wod-creator/${wodId}/update`}
+                      to={`/full-training/${fullTrainingId}/update`}
                       tw="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500"
                     >
                       <RefreshIcon tw="w-5 h-5 text-gray-800" />
@@ -95,4 +81,4 @@ const WodCreatedById = () => {
   );
 };
 
-export default WodCreatedById;
+export default FullTrainingById;

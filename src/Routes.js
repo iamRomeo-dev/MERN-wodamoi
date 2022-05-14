@@ -4,16 +4,23 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Layout } from "./shared/Layout";
 import { Page, PageContent } from "./shared/Page";
 import { Spinner } from "./shared/Spinner";
-import { WodCreatedById } from "./WodCreatedById/WodCreatedById";
 
+const Home = lazy(() => import("./home/Home"));
 const NotFoundScreen = lazy(() => import("./not-found/NotFoundScreen"));
+
 const RmTrackerList = lazy(() => import("./rmTracker/RmTrackerList"));
 const RmTrackerByMovment = lazy(() => import("./rmTracker/RmTrackerByMovment"));
+const RmTrackerCreation = lazy(() => import("./rmTracker/RmTrackerCreation"));
+
 const WodCreatorUpdate = lazy(() => import("./wodcreator/WodCreatorUpdate"));
 const WodCreatorCreation = lazy(() => import("./wodcreator/WodCreatorCreation"));
+const WodCreatedById = lazy(() => import("./WodCreatedById/WodCreatedById"));
 const WodCreator = lazy(() => import("./wodcreator/WodCreator"));
-const RmTrackerCreation = lazy(() => import("./rmTracker/RmTrackerCreation"));
-const Home = lazy(() => import("./home/Home"));
+
+const FullTrainingList = lazy(() => import("./fullTraining/FullTrainingList"));
+const FullTrainingByIdUpdate = lazy(() => import("./fullTraining/FullTrainingByIdUpdate"));
+const FullTrainingById = lazy(() => import("./fullTraining/FullTrainingById"));
+const FullTrainingCreation = lazy(() => import("./fullTraining/FullTrainingCreation"));
 
 export const AppRoutes = withAuthenticationRequired(() => {
   return (
@@ -30,6 +37,13 @@ export const AppRoutes = withAuthenticationRequired(() => {
         >
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/full-training" element={<FullTrainingList />} />
+            <Route path="/full-training/creation" element={<FullTrainingCreation />} />
+            <Route path="/full-training/:fullTrainingId" element={<FullTrainingById />} />
+            <Route
+              path="/full-training/:fullTrainingId/update"
+              element={<FullTrainingByIdUpdate />}
+            />
             <Route path="/wod-creator/creation" element={<WodCreatorCreation />} />
             <Route path="/wod-creator/:wodId/update" element={<WodCreatorUpdate />} />
             <Route path="/wod-creator/:wodId" element={<WodCreatedById />} />
