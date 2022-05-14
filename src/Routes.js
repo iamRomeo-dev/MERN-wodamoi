@@ -2,7 +2,8 @@ import { withAuthenticationRequired } from "@auth0/auth0-react";
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Layout } from "./shared/Layout";
-import { PageSkeleton } from "./shared/Page";
+import { Page, PageContent } from "./shared/Page";
+import { Spinner } from "./shared/Spinner";
 import { WodCreatedById } from "./WodCreatedById/WodCreatedById";
 
 const NotFoundScreen = lazy(() => import("./not-found/NotFoundScreen"));
@@ -18,7 +19,15 @@ export const AppRoutes = withAuthenticationRequired(() => {
   return (
     <BrowserRouter>
       <Layout>
-        <Suspense fallback={<PageSkeleton />}>
+        <Suspense
+          fallback={
+            <Page>
+              <PageContent>
+                <Spinner />
+              </PageContent>
+            </Page>
+          }
+        >
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/wod-creator/creation" element={<WodCreatorCreation />} />
