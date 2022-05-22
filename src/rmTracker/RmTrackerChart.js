@@ -4,8 +4,10 @@ import { useLocation, useParams } from "react-router-dom";
 import { useRmQuery } from "../APIsRmTracker";
 import { Filter } from "../shared/QueryHelper";
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const RmTrackerChart = () => {
+  const { user } = useAuth0();
   const { movment } = useParams();
 
   const pageSize = 20;
@@ -18,6 +20,7 @@ const RmTrackerChart = () => {
     ...Filter.from({
       $and: [
         {
+          createdBy: Filter.regex(user.name),
           movment: Filter.regex(movment),
         },
       ],
