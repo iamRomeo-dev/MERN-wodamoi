@@ -24,7 +24,7 @@ export const OpenSidebarButton = (props) => {
   const { t } = useTranslation();
   return (
     <button
-      tw="px-4 border-r border-gray-200 text-gray-500 focus:(outline-none ring-2 ring-inset ring-indigo-500) md:hidden"
+      tw="px-4 text-gray-500 focus:(outline-none ring-2 ring-inset ring-indigo-500) md:hidden"
       {...props}
     >
       <span tw="sr-only">{t("Layout.openSidebar")}</span>

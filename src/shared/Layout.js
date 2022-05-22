@@ -61,12 +61,12 @@ const ProfileDropdown = () => {
         {({ open }) => (
           <>
             {/* Profile button */}
-            <Menu.Button tw="max-w-xs bg-white flex items-center text-sm rounded-full focus:(outline-none ring-2 ring-offset-2 ring-indigo-500)">
+            <Menu.Button tw="max-w-xs bg-white flex items-center text-sm rounded-full focus:(outline-none ring-2 ring-offset-2 ring-white)">
               <span tw="sr-only">
                 {open ? t("Layout.closeProfileMenu") : t("Layout.openProfileMenu")}
               </span>
               <img
-                tw="h-8 w-8 rounded-full"
+                tw="h-8 w-8 rounded-full bg-red-200"
                 src={user?.picture}
                 alt={user?.name}
                 width={256}
@@ -86,7 +86,7 @@ const ProfileDropdown = () => {
             >
               <Menu.Items
                 static
-                tw="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:(outline-none)"
+                tw="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-red-100 focus:(outline-none)"
               >
                 {isAuthenticated && (
                   <header tw="px-4 py-3">
@@ -114,7 +114,7 @@ const ProfileDropdown = () => {
 
 const Navbar = ({ start, center, end }) => {
   return (
-    <header tw="relative z-10 flex-shrink-0 flex h-16 bg-white shadow">
+    <header tw="relative z-10 flex-shrink-0 flex h-16 bg-gray-800 shadow">
       {start}
       <nav tw="flex-1 px-4 flex justify-between">
         <div tw="flex-1 flex">{center}</div>
@@ -155,7 +155,7 @@ export const Layout = ({ children }) => {
         <div tw="flex flex-col w-0 flex-1 overflow-hidden bg-gray-800">
           <Navbar
             start={<OpenSidebarButton onClick={openSidebar} />}
-            center={<SearchBar />}
+            center={<></>}
             end={
               <>
                 <ProfileDropdown />
