@@ -13,11 +13,10 @@ import {
 } from "../shared/EmptyState";
 import { NotFoundIllustration } from "../not-found/NotFoundIllustration";
 import { FloatButton, PrimaryButton } from "../shared/Buttons";
-import { WodCreatorListItemSkeleton } from "./WodCreatorListItemSkeleton";
 import { WodCreatorListItem } from "./WodCreatorListItem";
+import { Spinner } from "../shared/Spinner";
 
 const WodCreator = () => {
-  const loadingArray = 10;
   const { status, data: wods } = useWodCreatorQuery();
   return (
     <div>
@@ -51,10 +50,7 @@ const WodCreator = () => {
             <>
               <div tw="w-full bg-white rounded-md shadow-sm mt-6">
                 <ul tw="divide-y-2 divide-gray-100">
-                  {status === "loading" &&
-                    [...Array(loadingArray)].map((e, index) => (
-                      <WodCreatorListItemSkeleton index={index} key={index} />
-                    ))}
+                  {status === "loading" && <Spinner tw="h-10 w-10 fixed left-1/2 top-1/2" />}
 
                   {status === "success" && (
                     <div tw="sm:rounded-md">

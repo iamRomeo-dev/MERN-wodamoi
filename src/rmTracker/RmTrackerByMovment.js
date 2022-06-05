@@ -5,17 +5,16 @@ import "twin.macro";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { ChevronLeftIcon, PlusIcon } from "@heroicons/react/solid";
 import { FloatButton } from "../shared/Buttons";
-import { WodCreatorListItemSkeleton } from "../wodcreator/WodCreatorListItemSkeleton";
 import { RmTrackerListItem } from "./RmTrackerListItem";
 import { useRmQuery } from "../APIsRmTracker";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Filter } from "../shared/QueryHelper";
 import RmTrackerChart from "./RmTrackerChart";
+import { Spinner } from "../shared/Spinner";
 
 const RmTrackerByMovment = () => {
   const { movment } = useParams();
   const { user } = useAuth0();
-  const loadingArray = 10;
 
   const pageSize = 20;
   const location = useLocation();
@@ -52,10 +51,7 @@ const RmTrackerByMovment = () => {
           <RmTrackerChart />
           <div tw="w-full bg-white rounded-md shadow-sm mt-6">
             <ul tw="divide-y-2 divide-gray-100">
-              {status === "loading" &&
-                [...Array(loadingArray)].map((e, index) => (
-                  <WodCreatorListItemSkeleton index={index} key={index} />
-                ))}
+              {status === "loading" && <Spinner tw="h-10 w-10 fixed left-1/2 top-1/2" />}
 
               {status === "success" && (
                 <div tw="sm:rounded-md">
