@@ -31,7 +31,7 @@ const RmTrackerChart = () => {
     if (active && payload && payload.length) {
       return (
         <div tw="bg-white p-1 rounded-lg opacity-50">
-          <span tw="block text-sm font-medium text-gray-700">{`${payload[0].value} kg`}</span>
+          <span tw="block text-xs font-medium text-gray-700">{`${payload[0].value} kg`}</span>
         </div>
       );
     }
@@ -59,13 +59,13 @@ const RmTrackerChart = () => {
 
   return (
     <>
-      <ResponsiveContainer width={"100%"} aspect={2}>
+      <ResponsiveContainer width={"95%"} aspect={2}>
         <LineChart
           data={rm?.list}
           margin={{
             top: 20,
             right: 15,
-            left: -25,
+            left: 0,
             bottom: 5,
           }}
         >
