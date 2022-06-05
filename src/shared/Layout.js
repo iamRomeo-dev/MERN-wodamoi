@@ -1,39 +1,15 @@
 /** @jsxImportSource @emotion/react */
 import { useAuth0 } from "@auth0/auth0-react";
 import { Menu } from "@headlessui/react";
-import { useId } from "@reach/auto-id";
 import "@reach/skip-nav/styles.css";
 import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import tw from "twin.macro";
 import { Transition } from "../shared/Transition";
-import { HomeOutlineIcon, SearchSolidIcon } from "./Icons";
+import { HomeOutlineIcon } from "./Icons";
 import { OpenSidebarButton, Sidebar, SidebarHeader, SidebarNavLink } from "./Sidebar";
-import { FireIcon, PencilAltIcon, PencilIcon } from "@heroicons/react/solid";
-
-const SearchBar = () => {
-  const { t } = useTranslation();
-  const id = useId();
-  return (
-    <form tw="w-full flex md:ml-0" action="#" method="GET">
-      <label htmlFor={id} tw="sr-only">
-        {t("Layout.search")}
-      </label>
-      <div tw="relative w-full text-gray-400 focus-within:text-gray-600">
-        <div tw="absolute inset-y-0 left-0 flex items-center pointer-events-none">
-          <SearchSolidIcon tw="h-5 w-5" />
-        </div>
-        <input
-          id={id}
-          tw="block w-full h-full pl-8 pr-3 py-2 border-transparent text-gray-900 placeholder-gray-500 focus:(outline-none placeholder-gray-400 ring-0 border-transparent) sm:(text-sm)"
-          placeholder={t("Layout.search")}
-          type="search"
-        />
-      </div>
-    </form>
-  );
-};
+import MinusSmIcon from "@heroicons/react/outline/MinusSmIcon";
 
 const ProfileDropdownItem = ({ disabled, as: Component = Link, ...props }) => {
   return (
@@ -90,7 +66,6 @@ const ProfileDropdown = () => {
               >
                 {isAuthenticated && (
                   <header tw="px-4 py-3">
-                    <p tw="text-sm">{t("Layout.signedInAs")}</p>
                     <p tw="text-sm font-medium text-gray-900 truncate">{user?.name}</p>
                   </header>
                 )}
@@ -138,15 +113,15 @@ export const Layout = ({ children }) => {
             Accueil
           </SidebarNavLink>
           <SidebarNavLink to="/seance-complete" exact="true">
-            <PencilIcon />
+            <MinusSmIcon />
             Seance complete
           </SidebarNavLink>
           <SidebarNavLink to="/wod-creator" exact="true">
-            <PencilIcon />
+            <MinusSmIcon />
             Wod creator
           </SidebarNavLink>
           <SidebarNavLink to="/rm-tracker" exact="true">
-            <FireIcon />
+            <MinusSmIcon />
             Rm tracker
           </SidebarNavLink>
         </Sidebar>
