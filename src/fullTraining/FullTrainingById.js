@@ -45,7 +45,9 @@ const FullTrainingById = () => {
                   <dd tw="mt-3">
                     <span tw="px-2 py-1 text-green-800 text-xs font-medium bg-green-100 rounded-full">
                       {fullTrainingById.description &&
-                        fullTrainingById.description.split("\n").map((str) => <p>{str}</p>)}
+                        fullTrainingById.description
+                          .split("\n")
+                          .map((str, index) => <p key={index}>{str}</p>)}
                     </span>
                   </dd>
                 </dl>
