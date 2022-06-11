@@ -12,7 +12,6 @@ const FullTrainingById = () => {
 
   const { status, data: fullTrainingById } = useFullTrainingByIdQuery(fullTrainingId);
   const { mutateAsync: deleteFullTraining } = useDeleteFullTraining();
-  console.log("fullTrainingByIdeee", fullTrainingById);
   const onRemove = (e) => {
     e.preventDefault();
     deleteFullTraining(fullTrainingId);

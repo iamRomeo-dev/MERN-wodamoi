@@ -18,7 +18,6 @@ import { FullTrainingListItem } from "./FullTrainingListItem";
 
 const FullTrainingList = () => {
   const { status, data: fullTraining } = useFullTrainingQuery();
-  console.log(fullTraining);
   return (
     <div>
       <Helmet title="Séance" />
