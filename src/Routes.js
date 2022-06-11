@@ -24,8 +24,6 @@ const FullTrainingByIdUpdate = lazy(() => import("./fullTraining/FullTrainingByI
 const FullTrainingById = lazy(() => import("./fullTraining/FullTrainingById"));
 const FullTrainingCreation = lazy(() => import("./fullTraining/FullTrainingCreation"));
 
-const AllTests = lazy(() => import("./AllTests"));
-
 export const AppRoutes = withAuthenticationRequired(() => {
   return (
     <BrowserRouter>
@@ -55,7 +53,6 @@ export const AppRoutes = withAuthenticationRequired(() => {
             <Route path="/rm-tracker/creation" element={<RmTrackerCreation />} />
             <Route path="/rm-tracker/:movment" element={<RmTrackerByMovment />} />
             <Route path="/rm-tracker" element={<RmTrackerList />} />
-            <Route path="/tests" element={<AllTests />} />
             <Route path="*" element={<NotFoundScreen />} />
           </Routes>
         </Suspense>
