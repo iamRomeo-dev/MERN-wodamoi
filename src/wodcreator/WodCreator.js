@@ -16,8 +16,11 @@ import { FloatButton, PrimaryButton } from "../shared/Buttons";
 import { WodCreatorListItem } from "./WodCreatorListItem";
 import { Spinner } from "../shared/Spinner";
 import { Pagination } from "../shared/Pagination";
+import { Filter } from "../shared/QueryHelper";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const WodCreator = () => {
+  const { user } = useAuth0();
   const pageSize = 10;
   const location = useLocation();
   const pageParams = location.search.substr(location.search.length - 1);
@@ -25,6 +28,13 @@ const WodCreator = () => {
   const { status, data: wods } = useWodCreatorQuery({
     limit: pageSize,
     skip: Number(pageParams) * pageSize,
+    ...Filter.from({
+      $and: [
+        {
+          createdBy: Filter.regex(user.name),
+        },
+      ],
+    }),
   });
   const totalOfPages = status === "success" && Math.ceil(wods.totalCount / pageSize);
 

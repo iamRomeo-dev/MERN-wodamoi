@@ -67,11 +67,11 @@ const RmTrackerList = () => {
             <EmptyState>
               <EmptyStateIllustration as={NotFoundIllustration} />
               <>
-                <EmptyStateTitle as="h3">Il n'y a pas de wod</EmptyStateTitle>
+                <EmptyStateTitle as="h3">Il n'y a pas de PR</EmptyStateTitle>
                 <EmptyStateDescription>
                   Créer le premier RM en cliquant sur le bouton ci-dessous.
                 </EmptyStateDescription>
-                <PrimaryButton as={Link} to="/rm-tracker/creation" tw="mt-8">
+                <PrimaryButton as={Link} to="/rm-tracker/creation/new" tw="mt-8">
                   Crée ton premier RM
                 </PrimaryButton>
               </>

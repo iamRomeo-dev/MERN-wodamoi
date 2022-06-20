@@ -9,14 +9,17 @@ import { Page, PageContent } from "../shared/Page";
 import { PanelContent } from "../shared/Panel";
 import { ChevronLeftIcon } from "@heroicons/react/solid";
 import { useFullTrainingMutation } from "../APIsFullTraining";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const FullTrainingCreation = () => {
+  const { user } = useAuth0();
   const { mutate, isLoading: isSaving } = useFullTrainingMutation();
   const navigate = useNavigate();
   const onSubmit = (data) => {
     mutate(
       {
         ...data,
+        createdBy: user?.name,
       },
       {
         onSuccess: () => {

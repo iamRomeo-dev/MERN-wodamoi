@@ -9,6 +9,7 @@ import { FieldsetLegend, FormGroup, HelperText, Label, RequiredAsterisk } from "
 import { Page, PageContent } from "../shared/Page";
 import { PanelContent } from "../shared/Panel";
 import { ChevronLeftIcon } from "@heroicons/react/solid";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export const typeForWods = [
   {
@@ -26,12 +27,14 @@ export const typeForWods = [
 ];
 
 const WodCreatorCreation = () => {
+  const { user } = useAuth0();
   const { mutate, isLoading: isSaving } = useWodCreatorMutation();
   const navigate = useNavigate();
   const onSubmit = (data) => {
     mutate(
       {
         ...data,
+        createdBy: user?.name,
       },
       {
         onSuccess: () => {
