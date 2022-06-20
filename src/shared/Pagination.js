@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import qs from "qs";
 import { useEffect, useState } from "react";
 
-export const Pagination = ({ data, pageParams, totalOfPages }) => {
+export const Pagination = ({ totalOfPages }) => {
   const [pageNumber, setPageNumber] = useState(0);
   const [numberOfPages, setnumberOfPages] = useState(0);
   useEffect(() => {

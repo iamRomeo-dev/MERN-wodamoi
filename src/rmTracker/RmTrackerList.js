@@ -108,7 +108,7 @@ const RmTrackerList = () => {
             <PlusIcon tw="h-12 w-10 text-gray-800" />
           </FloatButton>
 
-          <Pagination data={rms} pageParams={pageParams} totalOfPages={totalOfPages} />
+          <Pagination totalOfPages={totalOfPages} />
         </PageContent>
       </Page>
     </div>

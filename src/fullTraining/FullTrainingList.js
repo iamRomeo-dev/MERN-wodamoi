@@ -87,7 +87,7 @@ const FullTrainingList = () => {
             <PlusIcon tw="h-12 w-10 text-gray-800" />
           </FloatButton>
 
-          <Pagination data={fullTraining} pageParams={pageParams} totalOfPages={totalOfPages} />
+          <Pagination totalOfPages={totalOfPages} />
         </PageContent>
       </Page>
     </div>

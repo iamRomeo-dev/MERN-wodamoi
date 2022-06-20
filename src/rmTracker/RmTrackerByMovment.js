@@ -85,7 +85,7 @@ const RmTrackerByMovment = () => {
             </FloatButton>
           )}
 
-          <Pagination data={rm} pageParams={pageParams} totalOfPages={totalOfPages} />
+          <Pagination totalOfPages={totalOfPages} />
         </PageContent>
       </Page>
     </div>
