@@ -28,11 +28,11 @@ const ProfileDropdownItem = ({ disabled, as: Component = Link, ...props }) => {
   );
 };
 
-const ProfileDropdown = () => {
+const ProfileDropdown = (props) => {
   const { user, isAuthenticated, logout } = useAuth0();
   const { t } = useTranslation();
   return (
-    <div tw="relative">
+    <div tw="relative" {...props}>
       <Menu>
         {({ open }) => (
           <>
@@ -125,7 +125,7 @@ export const Layout = ({ children }) => {
             Rm tracker
           </SidebarNavLink>
           <div tw="absolute bottom-5">
-            <ProfileDropdown />
+            <ProfileDropdown tw="hidden md:block" />
           </div>
         </Sidebar>
 
