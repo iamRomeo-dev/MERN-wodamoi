@@ -5,8 +5,11 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { ChevronLeftIcon, RefreshIcon, TrashIcon } from "@heroicons/react/solid";
 import { Page, PageContent } from "../shared/Page";
 import { useDeleteFullTraining, useFullTrainingByIdQuery } from "../APIsFullTraining";
+import { ModalConfirm } from "../shared/ModalConfirm";
+import { useState } from "react";
 
 const FullTrainingById = () => {
+  const [showModal, setShowModal] = useState(false);
   const { fullTrainingId } = useParams();
   const navigate = useNavigate();
 
@@ -33,48 +36,60 @@ const FullTrainingById = () => {
           </Link>
 
           {status === "success" && (
-            <div tw="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200 mt-6">
-              <div tw="flex-1 flex flex-col p-8">
-                <h3 tw="mt-6 text-gray-900 text-sm font-medium">
-                  {fullTrainingById?.name && fullTrainingById.name}
-                </h3>
-                <dl tw="mt-1 flex-grow flex flex-col justify-between">
-                  <dt tw="sr-only">Title</dt>
+            <>
+              <div tw="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200 mt-6">
+                <div tw="flex-1 flex flex-col p-8">
+                  <h3 tw="mt-6 text-gray-900 text-sm font-medium">
+                    {fullTrainingById?.name && fullTrainingById.name}
+                  </h3>
+                  <dl tw="mt-1 flex-grow flex flex-col justify-between">
+                    <dt tw="sr-only">Title</dt>
 
-                  <dt tw="sr-only">Role</dt>
-                  <dd tw="mt-3">
-                    <span tw="px-2 py-1 text-green-800 text-xs font-medium bg-green-100 rounded-full">
-                      {fullTrainingById.description &&
-                        fullTrainingById.description
-                          .split("\n")
-                          .map((str, index) => <p key={index}>{str}</p>)}
-                    </span>
-                  </dd>
-                </dl>
-              </div>
-              <div>
-                <div tw="-mt-px flex divide-x divide-gray-200">
-                  <div tw="w-0 flex-1 flex">
-                    <button
-                      onClick={onRemove}
-                      tw="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500"
-                    >
-                      <TrashIcon tw="w-5 h-5 text-gray-800" />
-                      <span tw="ml-3">Supprimer</span>
-                    </button>
-                  </div>
-                  <div tw="-ml-px w-0 flex-1 flex">
-                    <Link
-                      to={`/full-training/${fullTrainingId}/update`}
-                      tw="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500"
-                    >
-                      <RefreshIcon tw="w-5 h-5 text-gray-800" />
-                      <span tw="ml-3">Modifier</span>
-                    </Link>
+                    <dt tw="sr-only">Role</dt>
+                    <dd tw="mt-3">
+                      <span tw="px-2 py-1 text-green-800 text-xs font-medium bg-green-100 rounded-full">
+                        {fullTrainingById.description &&
+                          fullTrainingById.description
+                            .split("\n")
+                            .map((str, index) => <p key={index}>{str}</p>)}
+                      </span>
+                    </dd>
+                  </dl>
+                </div>
+                <div>
+                  <div tw="-mt-px flex divide-x divide-gray-200">
+                    <div tw="w-0 flex-1 flex">
+                      <button
+                        onClick={() => {
+                          setShowModal(!showModal);
+                        }}
+                        tw="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500"
+                      >
+                        <TrashIcon tw="w-5 h-5 text-gray-800" />
+                        <span tw="ml-3">Supprimer</span>
+                      </button>
+                    </div>
+                    <div tw="-ml-px w-0 flex-1 flex">
+                      <Link
+                        to={`/full-training/${fullTrainingId}/update`}
+                        tw="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500"
+                      >
+                        <RefreshIcon tw="w-5 h-5 text-gray-800" />
+                        <span tw="ml-3">Modifier</span>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+              {showModal && (
+                <ModalConfirm
+                  showModal={showModal}
+                  setShowModal={setShowModal}
+                  onRemove={onRemove}
+                  title="Voulez-vous supprimer définitivement cette séance ?"
+                />
+              )}
+            </>
           )}
         </PageContent>
       </Page>

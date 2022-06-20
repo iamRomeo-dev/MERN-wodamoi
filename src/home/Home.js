@@ -12,9 +12,9 @@ const Home = () => {
   return (
     <div>
       <Helmet title={t("Dashboard.title")} />
-      <Page tw="relative">
+      <Page tw="relative overflow-hidden">
         <PageContent>
-          <div tw="grid grid-cols-1 lg:grid-cols-3 gap-y-4 md:gap-x-2 w-full lg:w-2/3 min-h-screen">
+          <div tw="grid grid-cols-1 gap-y-4 md:gap-x-2 w-full min-h-screen">
             <Link to="/full-training">
               <div tw="relative overflow-hidden bg-gray-100 rounded-md p-8 shadow-sm h-full">
                 <WodamoiIcon tw="absolute -right-10 w-64 h-auto opacity-50" bgColor={"#0c4a6e"} />

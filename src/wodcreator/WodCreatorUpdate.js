@@ -75,7 +75,7 @@ const WodCreatorUpdate = () => {
                 <FieldsetLegend>Met à jour ton wod</FieldsetLegend>
                 <HelperText>Informations générales le workout de ton choix.</HelperText>
                 {status === "success" && (
-                  <div tw="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6">
+                  <div tw="grid grid-cols-1 gap-6 mt-6">
                     <FormGroup>
                       <Label htmlFor="name">Nom</Label>
                       <input
@@ -86,27 +86,12 @@ const WodCreatorUpdate = () => {
                       />
                     </FormGroup>
 
-                    <div tw="grid grid-cols-2 gap-6">
+                    <div tw="grid grid-cols-1 gap-6">
                       <FormGroup tw="w-full">
                         <Label htmlFor="wodType">
                           Type <RequiredAsterisk tw="text-red-500" />
                         </Label>
                         <div tw="mt-1 sm:mt-0 sm:col-span-2">
-                          {/* <select
-                          onChange={(e) => {
-                            setTypeForWod(e.target.value);
-                          }}
-                          defaultValue="rrrr"
-                          id="typee"
-                          name="typee"
-                          tw="focus:ring-primary-500 focus:border-primary-500 shadow-sm sm:text-sm border-gray-300 rounded-md w-full"
-                        >
-                          {typeForWods.map((option, index) => (
-                            <option key={index} defaultValue="toto" value={option._id}>
-                              {option.types}
-                            </option>
-                          ))}
-                        </select> */}
                           <select
                             {...register("wodType")}
                             id="wodType"

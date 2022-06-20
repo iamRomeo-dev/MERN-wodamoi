@@ -7,7 +7,7 @@ import { Button, PrimaryButton } from "../shared/Buttons";
 import { FieldsetLegend, FormGroup, HelperText, Label, RequiredAsterisk } from "../shared/Form";
 import { Page, PageContent } from "../shared/Page";
 import { PanelContent } from "../shared/Panel";
-import { ChevronLeftIcon, FireIcon } from "@heroicons/react/solid";
+import { ChevronLeftIcon, FireIcon, PlusIcon } from "@heroicons/react/solid";
 import { useRmMutation, useRmQuery } from "../APIsRmTracker";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useState } from "react";
@@ -76,15 +76,20 @@ const RmTrackerCreation = () => {
               <HelperText>Informations générales concernant le workout de ton choix.</HelperText>
               <div tw="flex items-center justify-center gap-2 mt-2">
                 {isNew === true && <p tw="text-pink-200">WOD</p>}
-                <FireIcon
-                  tw="h-10 w-auto text-white"
-                  css={isNew && tw`text-pink-300`}
-                  onClick={() => setIsNew(!isNew)}
-                />
+                <div tw="relative">
+                  <FireIcon
+                    tw="h-10 w-auto text-white"
+                    css={isNew && tw`text-pink-300`}
+                    onClick={() => setIsNew(!isNew)}
+                  />
+                  {isNew === false && (
+                    <PlusIcon tw="absolute top-0 right-1 h-2 w-auto text-white" />
+                  )}
+                </div>
                 {isNew === true && <p tw="text-pink-200">MOI</p>}
               </div>
-              <div tw="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6">
-                <div tw="grid grid-cols-2 gap-6">
+              <div tw="grid grid-cols-1 gap-6 mt-6">
+                <div tw="grid grid-cols-1 gap-6">
                   <FormGroup tw="w-full">
                     <Label htmlFor="movment">
                       Mouvement <RequiredAsterisk tw="text-red-500" />

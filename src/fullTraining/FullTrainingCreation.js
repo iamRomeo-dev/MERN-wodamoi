@@ -48,7 +48,7 @@ const FullTrainingCreation = () => {
               <FieldsetLegend>Crée ta séance complète</FieldsetLegend>
               <HelperText>Informations générales concernant la séance de ton choix.</HelperText>
 
-              <div tw="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6">
+              <div tw="grid grid-cols-1 gap-6 mt-6">
                 <FormGroup>
                   <Label htmlFor="name">Nom</Label>
                   <input

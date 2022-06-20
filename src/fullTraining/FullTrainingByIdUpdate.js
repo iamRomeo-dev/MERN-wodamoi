@@ -55,7 +55,7 @@ const FullTrainingByIdUpdate = () => {
                 <FieldsetLegend>Met à jour ta séance</FieldsetLegend>
                 <HelperText>Informations générales la séance de ton choix.</HelperText>
                 {status === "success" && (
-                  <div tw="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6">
+                  <div tw="grid grid-cols-1 gap-6 mt-6">
                     <FormGroup>
                       <Label htmlFor="name">Nom</Label>
                       <input
