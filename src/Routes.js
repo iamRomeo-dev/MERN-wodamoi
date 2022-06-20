@@ -32,7 +32,7 @@ export const AppRoutes = withAuthenticationRequired(() => {
           fallback={
             <Page>
               <PageContent tw="h-screen">
-                <Spinner tw="h-10 w-10 fixed left-1/2 md:left-2/3 top-1/2" />
+                <Spinner tw="h-6 w-6 fixed left-1/2 md:left-2/3 top-1/2" />
               </PageContent>
             </Page>
           }

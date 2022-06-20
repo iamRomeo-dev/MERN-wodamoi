@@ -40,7 +40,7 @@ const FullTrainingList = () => {
     <div>
       <Helmet title="Séance" />
       <Page tw="relative">
-        <PageContent>
+        <PageContent tw="relative">
           <Link
             to={{
               pathname: `/`,
@@ -68,7 +68,7 @@ const FullTrainingList = () => {
             <div tw="w-full bg-white rounded-md shadow-sm mt-6">
               <ul tw="divide-y-2 divide-gray-100">
                 {status === "loading" && (
-                  <Spinner tw="h-10 w-10 fixed left-1/2 md:left-2/3 top-1/2" />
+                  <Spinner tw="h-6 w-6 fixed left-1/2 md:left-2/3 top-1/2" />
                 )}
 
                 {status === "success" && (
@@ -90,6 +90,7 @@ const FullTrainingList = () => {
               </ul>
             </div>
           )}
+
           {status === "success" && <Pagination totalOfPages={totalOfPages} />}
           <FloatButton as={Link} to="/full-training/creation" tw="">
             <PlusIcon tw="h-12 w-10 text-gray-800" />

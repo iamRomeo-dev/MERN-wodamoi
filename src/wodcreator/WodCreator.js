@@ -71,7 +71,7 @@ const WodCreator = () => {
               <div tw="w-full bg-white rounded-md shadow-sm mt-6">
                 <ul tw="divide-y-2 divide-gray-100">
                   {status === "loading" && (
-                    <Spinner tw="h-10 w-10 fixed left-1/2 md:left-2/3 top-1/2" />
+                    <Spinner tw="h-6 w-6 fixed left-1/2 md:left-2/3 top-1/2" />
                   )}
 
                   {status === "success" && (
