@@ -87,7 +87,7 @@ const RmTrackerList = () => {
                               tw="hover:text-white cursor-pointer hover:bg-gray-50 shadow-sm overflow-hidden"
                               key={rm._id}
                             >
-                              <Link to={`/rm-tracker/${rm.movment}`}>
+                              <Link to={`/rm-tracker/${rm.movment.toLowerCase()}`}>
                                 <RmTrackerListItem rm={rm} index={index} />
                               </Link>
                             </li>
@@ -100,7 +100,8 @@ const RmTrackerList = () => {
               </div>
             </>
           )}
-          <FloatButton as={Link} to="/rm-tracker/creation" tw="">
+
+          <FloatButton as={Link} to={`/rm-tracker/creation/new`}>
             <PlusIcon tw="h-12 w-10 text-gray-800" />
           </FloatButton>
         </PageContent>

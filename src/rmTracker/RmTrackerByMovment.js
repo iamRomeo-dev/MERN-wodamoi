@@ -34,6 +34,7 @@ const RmTrackerByMovment = () => {
       ],
     }),
   });
+
   return (
     <div>
       <Helmet title="Wod creator" />
@@ -74,9 +75,11 @@ const RmTrackerByMovment = () => {
               )}
             </ul>
           </div>
-          <FloatButton as={Link} to="/rm-tracker/creation" tw="">
-            <PlusIcon tw="h-12 w-10 text-gray-800" />
-          </FloatButton>
+          {status === "success" && (
+            <FloatButton as={Link} to={`/rm-tracker/creation/${movment}`}>
+              <PlusIcon tw="h-12 w-10 text-gray-800" />
+            </FloatButton>
+          )}
         </PageContent>
       </Page>
     </div>

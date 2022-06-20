@@ -50,7 +50,7 @@ export const AppRoutes = withAuthenticationRequired(() => {
             <Route path="/wod-creator/:wodId/update" element={<WodCreatorUpdate />} />
             <Route path="/wod-creator/:wodId" element={<WodCreatedById />} />
             <Route path="/wod-creator" element={<WodCreator />} />
-            <Route path="/rm-tracker/creation" element={<RmTrackerCreation />} />
+            <Route path="/rm-tracker/creation/:rmParam" element={<RmTrackerCreation />} />
             <Route path="/rm-tracker/:movment" element={<RmTrackerByMovment />} />
             <Route path="/rm-tracker" element={<RmTrackerList />} />
             <Route path="*" element={<NotFoundScreen />} />

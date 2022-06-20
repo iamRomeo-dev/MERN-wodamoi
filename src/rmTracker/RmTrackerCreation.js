@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import "twin.macro";
 import { Button, PrimaryButton } from "../shared/Buttons";
 import { FieldsetLegend, FormGroup, HelperText, Label, RequiredAsterisk } from "../shared/Form";
@@ -18,8 +18,10 @@ const RmTrackerCreation = () => {
   const { user } = useAuth0();
   const [isNew, setIsNew] = useState(false);
   const { mutate, isLoading: isSaving } = useRmMutation();
+  const { rmParam } = useParams();
 
   const navigate = useNavigate();
+
   const onSubmit = (data) => {
     mutate(
       {
@@ -28,7 +30,7 @@ const RmTrackerCreation = () => {
       },
       {
         onSuccess: () => {
-          navigate(`/rm-tracker`);
+          rmParam === "new" ? navigate(`/rm-tracker`) : navigate(`/rm-tracker/${data.movment}`);
         },
       }
     );
@@ -96,25 +98,42 @@ const RmTrackerCreation = () => {
                     </Label>
                     <div tw="mt-1 sm:mt-0 sm:col-span-2">
                       {isNew === false ? (
-                        <select
-                          {...register("movment")}
-                          id="movment"
-                          name="movment"
-                          defaultValue="AMRAP"
-                          tw="w-full focus:ring-primary-500 focus:border-primary-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md pr-8"
-                        >
-                          {setMovments.map((option, index) => (
-                            <option key={index} value={option}>
-                              {option}
-                            </option>
-                          ))}
-                        </select>
+                        rmParam === "new" ? (
+                          <select
+                            {...register("movment")}
+                            id="movment"
+                            name="movment"
+                            tw="w-full focus:ring-primary-500 focus:border-primary-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md pr-8"
+                          >
+                            {setMovments.map((option, index) => (
+                              <option key={index} value={option}>
+                                {option}
+                              </option>
+                            ))}
+                          </select>
+                        ) : (
+                          <select
+                            {...register("movment")}
+                            id="movment"
+                            name="movment"
+                            defaultValue={rmParam}
+                            tw="w-full focus:ring-primary-500 focus:border-primary-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md pr-8"
+                          >
+                            <option>{rmParam}</option>
+                            {setMovments.map((option, index) => (
+                              <option key={index} value={option}>
+                                {option}
+                              </option>
+                            ))}
+                          </select>
+                        )
                       ) : (
                         <input
                           tw="flex-1 block w-full text-sm z-0 focus:z-10 border-gray-300 rounded-md focus:(ring-indigo-500 border-indigo-500) disabled:(bg-gray-50 text-gray-500)"
                           {...register("movment")}
                           type="text"
                           id="movment"
+                          placeholder={rmParam}
                         />
                       )}
                     </div>

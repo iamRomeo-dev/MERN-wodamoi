@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { BanIcon } from "@heroicons/react/solid";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import "twin.macro";
 import { useDeleteRm } from "../APIsRmTracker";
 import { Badge, VerticalSignal } from "../shared/Badge";
@@ -26,13 +27,17 @@ export const RmTrackerListItem = ({ rm }) => {
   const [isDeletable, setIsDeletable] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const { mutateAsync: deleteRm } = useDeleteRm();
+  const location = useLocation();
+
+  const rmPathname = location.pathname.split("/").pop();
+  console.log("RmTrackerListItem", rmPathname);
+
   const color = getInactifStatusColor(rm.movment);
   const onRemove = (e) => {
     e.preventDefault();
     deleteRm(rm._id);
   };
 
-  console.log("isNew", isDeletable);
   return (
     <div tw="relative hover:bg-gray-50" onClick={() => setIsDeletable(!isDeletable)}>
       <VerticalSignal color={color} />
