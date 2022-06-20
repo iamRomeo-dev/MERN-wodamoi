@@ -37,12 +37,12 @@ const ProfileDropdown = () => {
         {({ open }) => (
           <>
             {/* Profile button */}
-            <Menu.Button tw="max-w-xs bg-white flex items-center text-sm rounded-full focus:(outline-none ring-2 ring-offset-2 ring-white)">
+            <Menu.Button tw="max-w-xs bg-white flex items-center text-sm rounded-full focus:(outline-none ring-2 ring-offset-2 ring-white) md:ml-2">
               <span tw="sr-only">
                 {open ? t("Layout.closeProfileMenu") : t("Layout.openProfileMenu")}
               </span>
               <img
-                tw="h-8 w-8 rounded-full bg-red-200"
+                tw="h-8 w-8 md:h-10 md:w-10 rounded-full bg-red-200"
                 src={user?.picture}
                 alt={user?.name}
                 width={256}
@@ -62,7 +62,7 @@ const ProfileDropdown = () => {
             >
               <Menu.Items
                 static
-                tw="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-red-100 focus:(outline-none)"
+                tw="origin-top-right absolute right-0 md:left-0 md:bottom-12 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-red-100 focus:(outline-none)"
               >
                 {isAuthenticated && (
                   <header tw="px-4 py-3">
@@ -89,7 +89,7 @@ const ProfileDropdown = () => {
 
 const Navbar = ({ start, center, end }) => {
   return (
-    <header tw="relative z-10 flex-shrink-0 flex h-16 bg-gray-800 shadow">
+    <header tw="relative z-10 flex-shrink-0 flex h-16 bg-gray-800 shadow md:hidden md:h-0">
       {start}
       <nav tw="flex-1 px-4 flex justify-between">
         <div tw="flex-1 flex">{center}</div>
@@ -112,7 +112,7 @@ export const Layout = ({ children }) => {
             <HomeOutlineIcon />
             Accueil
           </SidebarNavLink>
-          <SidebarNavLink to="/seance-complete" exact="true">
+          <SidebarNavLink to="/full-training" exact="true">
             <MinusSmIcon />
             Seance complete
           </SidebarNavLink>
@@ -124,6 +124,9 @@ export const Layout = ({ children }) => {
             <MinusSmIcon />
             Rm tracker
           </SidebarNavLink>
+          <div tw="absolute bottom-5">
+            <ProfileDropdown />
+          </div>
         </Sidebar>
 
         {/* Navbar & content */}
