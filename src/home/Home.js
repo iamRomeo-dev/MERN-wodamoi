@@ -37,7 +37,7 @@ const Home = () => {
                 </div>
               </div>
             </Link>
-            <Link to={`/rm-tracker`} tw="mb-28">
+            <Link to={`/rm-tracker`} tw="mb-28 md:mb-12">
               <div tw="relative overflow-hidden bg-gray-100 rounded-md p-8 shadow-sm h-full">
                 <WodamoiIcon tw="absolute -right-10 w-64 h-auto opacity-50" bgColor={"#0369a1"} />
                 <div tw="relative w-full h-full">
