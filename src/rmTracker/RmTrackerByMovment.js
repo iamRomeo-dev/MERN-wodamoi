@@ -85,7 +85,7 @@ const RmTrackerByMovment = () => {
             </FloatButton>
           )}
 
-          <Pagination totalOfPages={totalOfPages} />
+          {status === "success" && <Pagination totalOfPages={totalOfPages} />}
         </PageContent>
       </Page>
     </div>

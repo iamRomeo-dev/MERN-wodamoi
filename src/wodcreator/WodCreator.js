@@ -98,7 +98,7 @@ const WodCreator = () => {
             <PlusIcon tw="h-12 w-10 text-gray-800" />
           </FloatButton>
 
-          <Pagination totalOfPages={totalOfPages} />
+          {status === "success" && <Pagination totalOfPages={totalOfPages} />}
         </PageContent>
       </Page>
     </div>

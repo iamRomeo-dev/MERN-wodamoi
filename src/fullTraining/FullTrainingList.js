@@ -65,38 +65,35 @@ const FullTrainingList = () => {
               </>
             </EmptyState>
           ) : (
-            <>
-              <div tw="w-full bg-white rounded-md shadow-sm mt-6">
-                <ul tw="divide-y-2 divide-gray-100">
-                  {status === "loading" && (
-                    <Spinner tw="h-10 w-10 fixed left-1/2 md:left-2/3 top-1/2" />
-                  )}
+            <div tw="w-full bg-white rounded-md shadow-sm mt-6">
+              <ul tw="divide-y-2 divide-gray-100">
+                {status === "loading" && (
+                  <Spinner tw="h-10 w-10 fixed left-1/2 md:left-2/3 top-1/2" />
+                )}
 
-                  {status === "success" && (
-                    <div tw="sm:rounded-md">
-                      {fullTraining.list.map((fullTraining, index) => {
-                        return (
-                          <li
-                            tw="hover:text-white cursor-pointer hover:bg-gray-50 shadow-sm overflow-hidden"
-                            key={fullTraining._id}
-                          >
-                            <Link to={`/full-training/${fullTraining._id}`}>
-                              <FullTrainingListItem fullTraining={fullTraining} index={index} />
-                            </Link>
-                          </li>
-                        );
-                      })}
-                    </div>
-                  )}
-                </ul>
-              </div>
-            </>
+                {status === "success" && (
+                  <div tw="sm:rounded-md">
+                    {fullTraining.list.map((fullTraining, index) => {
+                      return (
+                        <li
+                          tw="hover:text-white cursor-pointer hover:bg-gray-50 shadow-sm overflow-hidden"
+                          key={fullTraining._id}
+                        >
+                          <Link to={`/full-training/${fullTraining._id}`}>
+                            <FullTrainingListItem fullTraining={fullTraining} index={index} />
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </div>
+                )}
+              </ul>
+            </div>
           )}
+          {status === "success" && <Pagination totalOfPages={totalOfPages} />}
           <FloatButton as={Link} to="/full-training/creation" tw="">
             <PlusIcon tw="h-12 w-10 text-gray-800" />
           </FloatButton>
-
-          <Pagination totalOfPages={totalOfPages} />
         </PageContent>
       </Page>
     </div>
