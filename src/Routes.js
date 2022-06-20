@@ -6,7 +6,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Layout } from "./shared/Layout";
 import { Page, PageContent } from "./shared/Page";
 import { Spinner } from "./shared/Spinner";
-import Description from "./Linkledin.js/Description";
 
 const Home = lazy(() => import("./home/Home"));
 const NotFoundScreen = lazy(() => import("./not-found/NotFoundScreen"));
@@ -40,7 +39,6 @@ export const AppRoutes = withAuthenticationRequired(() => {
         >
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/description" element={<Description />} />
             <Route path="/full-training" element={<FullTrainingList />} />
             <Route path="/full-training/creation" element={<FullTrainingCreation />} />
             <Route path="/full-training/:fullTrainingId" element={<FullTrainingById />} />
