@@ -11,12 +11,13 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Filter } from "../shared/QueryHelper";
 import RmTrackerChart from "./RmTrackerChart";
 import { Spinner } from "../shared/Spinner";
+import { Pagination } from "../shared/Pagination";
 
 const RmTrackerByMovment = () => {
   const { movment } = useParams();
   const { user } = useAuth0();
 
-  const pageSize = 20;
+  const pageSize = 2;
   const location = useLocation();
   const pageParams = location.search.substr(location.search.length - 1);
 
@@ -34,6 +35,7 @@ const RmTrackerByMovment = () => {
       ],
     }),
   });
+  const totalOfPages = status === "success" && Math.ceil(rm.totalCount / pageSize);
 
   return (
     <div>
@@ -80,6 +82,8 @@ const RmTrackerByMovment = () => {
               <PlusIcon tw="h-12 w-10 text-gray-800" />
             </FloatButton>
           )}
+
+          <Pagination data={rm} pageParams={pageParams} totalOfPages={totalOfPages} />
         </PageContent>
       </Page>
     </div>

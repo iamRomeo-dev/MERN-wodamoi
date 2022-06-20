@@ -77,31 +77,29 @@ const RmTrackerList = () => {
               </>
             </EmptyState>
           ) : (
-            <>
-              <div tw="w-full bg-white rounded-md shadow-sm mt-6">
-                <ul tw="divide-y-2 divide-gray-100">
-                  {status === "loading" && <Spinner tw="h-10 w-10 fixed left-1/2 top-1/2" />}
-                  {status === "success" && (
-                    <div tw="sm:rounded-md">
-                      {rmsUniqueMovment
-                        .map((rm, index) => {
-                          return (
-                            <li
-                              tw="hover:text-white cursor-pointer hover:bg-gray-50 shadow-sm overflow-hidden"
-                              key={rm._id}
-                            >
-                              <Link to={`/rm-tracker/${rm.movment.toLowerCase()}`}>
-                                <RmTrackerListItem rm={rm} index={index} />
-                              </Link>
-                            </li>
-                          );
-                        })
-                        .reverse()}
-                    </div>
-                  )}
-                </ul>
-              </div>
-            </>
+            <div tw="w-full bg-white rounded-md shadow-sm mt-6">
+              <ul tw="divide-y-2 divide-gray-100">
+                {status === "loading" && <Spinner tw="h-10 w-10 fixed left-1/2 top-1/2" />}
+                {status === "success" && (
+                  <div tw="sm:rounded-md">
+                    {rmsUniqueMovment
+                      .map((rm, index) => {
+                        return (
+                          <li
+                            tw="hover:text-white cursor-pointer hover:bg-gray-50 shadow-sm overflow-hidden"
+                            key={rm._id}
+                          >
+                            <Link to={`/rm-tracker/${rm.movment.toLowerCase()}`}>
+                              <RmTrackerListItem rm={rm} index={index} />
+                            </Link>
+                          </li>
+                        );
+                      })
+                      .reverse()}
+                  </div>
+                )}
+              </ul>
+            </div>
           )}
 
           <FloatButton as={Link} to={`/rm-tracker/creation/new`}>

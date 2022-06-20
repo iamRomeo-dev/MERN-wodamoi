@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import "twin.macro";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useRmQuery } from "../APIsRmTracker";
 import { Filter } from "../shared/QueryHelper";
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
@@ -10,13 +10,7 @@ const RmTrackerChart = () => {
   const { user } = useAuth0();
   const { movment } = useParams();
 
-  const pageSize = 20;
-  const location = useLocation();
-  const pageParams = location.search.substr(location.search.length - 1);
-
   const { status, data: rm } = useRmQuery({
-    limit: pageSize,
-    skip: Number(pageParams) * pageSize,
     ...Filter.from({
       $and: [
         {
