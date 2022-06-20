@@ -124,6 +124,10 @@ export const Layout = ({ children }) => {
             <MinusSmIcon />
             Rm tracker
           </SidebarNavLink>
+          <SidebarNavLink to="/rm-tracker" exact="true">
+            <MinusSmIcon />
+            Test
+          </SidebarNavLink>
           <div tw="absolute bottom-5">
             <ProfileDropdown tw="hidden md:block" />
           </div>
