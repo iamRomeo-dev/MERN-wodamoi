@@ -1,9 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import "twin.macro";
-import HashtagIcon from "@heroicons/react/outline/HashtagIcon";
-import GlobeAltIcon from "@heroicons/react/outline/GlobeAltIcon";
-import IdentificationIcon from "@heroicons/react/outline/IdentificationIcon";
 import { Badge, BadgeDot } from "../shared/Badge";
+import { ClockIcon, StarIcon } from "@heroicons/react/solid";
 
 export const getInactifStatusColor = (inactifStatus) => {
   switch (inactifStatus) {
@@ -56,27 +54,19 @@ export const ListTitle = ({ wod }) => {
     <div tw="mt-2 flex items-center justify-between flex-wrap w-full">
       <div tw="flex">
         <div tw="flex items-center flex-wrap gap-4 text-sm text-gray-500">
-          <div tw="flex items-center gap-1 text-sm text-gray-500">
-            <HashtagIcon tw="w-5 h-5 text-gray-400" />
-            <p>{wod?.name}</p>
-          </div>
-
-          <div tw="flex items-center gap-1 text-sm text-gray-500">
-            <GlobeAltIcon tw="w-5 h-5 text-gray-400" />
-            <p>aa</p>
-          </div>
-
-          {/* {workSite.start_date && (
+          {wod?.wodType && (
             <div tw="flex items-center gap-1 text-sm text-gray-500">
-              <CalendarIcon tw="w-5 h-5 text-gray-400" />
-              <p>{workSite.start_date.split("T")[0].split("-").reverse().join("-")}</p>
+              <StarIcon tw="w-5 h-5 text-gray-400" />
+              <p>{wod?.wodType}</p>
             </div>
-          )} */}
+          )}
 
-          <div tw="flex items-center gap-1 text-sm text-gray-500">
-            <IdentificationIcon tw="w-5 h-5 text-gray-400" />
-            <p>www</p>
-          </div>
+          {wod?.time && (
+            <div tw="flex items-center gap-1 text-sm text-gray-500">
+              <ClockIcon tw="w-5 h-5 text-gray-400" />
+              <p>{wod?.time}</p>
+            </div>
+          )}
         </div>
       </div>
     </div>
