@@ -17,7 +17,7 @@ const RmTrackerByMovment = () => {
   const { movment } = useParams();
   const { user } = useAuth0();
 
-  const pageSize = 2;
+  const pageSize = 4;
   const location = useLocation();
   const pageParams = location.search.substr(location.search.length - 1);
 
