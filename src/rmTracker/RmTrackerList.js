@@ -17,6 +17,7 @@ import { useRmQuery } from "../APIsRmTracker";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Filter } from "../shared/QueryHelper";
 import { Spinner } from "../shared/Spinner";
+import { Pagination } from "../shared/Pagination";
 
 const RmTrackerList = () => {
   const { user } = useAuth0();
@@ -35,6 +36,8 @@ const RmTrackerList = () => {
       ],
     }),
   });
+  const totalOfPages = status === "success" && Math.ceil(rms.totalCount / pageSize);
+
   // Sort the array in order to keep only unique objects with the same movment value
   const key = "movment";
   const rmsUniqueMovment = [
@@ -104,6 +107,8 @@ const RmTrackerList = () => {
           <FloatButton as={Link} to={`/rm-tracker/creation/new`}>
             <PlusIcon tw="h-12 w-10 text-gray-800" />
           </FloatButton>
+
+          <Pagination data={rms} pageParams={pageParams} totalOfPages={totalOfPages} />
         </PageContent>
       </Page>
     </div>

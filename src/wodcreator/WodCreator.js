@@ -2,7 +2,7 @@
 import { Helmet } from "react-helmet-async";
 import { Page, PageContent } from "../shared/Page";
 import "twin.macro";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ChevronLeftIcon, PlusIcon } from "@heroicons/react/solid";
 import { useWodCreatorQuery } from "../APIsWodCreator";
 import {
@@ -15,9 +15,19 @@ import { NotFoundIllustration } from "../not-found/NotFoundIllustration";
 import { FloatButton, PrimaryButton } from "../shared/Buttons";
 import { WodCreatorListItem } from "./WodCreatorListItem";
 import { Spinner } from "../shared/Spinner";
+import { Pagination } from "../shared/Pagination";
 
 const WodCreator = () => {
-  const { status, data: wods } = useWodCreatorQuery();
+  const pageSize = 10;
+  const location = useLocation();
+  const pageParams = location.search.substr(location.search.length - 1);
+
+  const { status, data: wods } = useWodCreatorQuery({
+    limit: pageSize,
+    skip: Number(pageParams) * pageSize,
+  });
+  const totalOfPages = status === "success" && Math.ceil(wods.totalCount / pageSize);
+
   return (
     <div>
       <Helmet title="Wod creator" />
@@ -75,6 +85,8 @@ const WodCreator = () => {
           <FloatButton as={Link} to="/wod-creator/creation" tw="">
             <PlusIcon tw="h-12 w-10 text-gray-800" />
           </FloatButton>
+
+          <Pagination data={wods} pageParams={pageParams} totalOfPages={totalOfPages} />
         </PageContent>
       </Page>
     </div>

@@ -2,7 +2,7 @@
 import { Helmet } from "react-helmet-async";
 import { Page, PageContent } from "../shared/Page";
 import "twin.macro";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ChevronLeftIcon, PlusIcon } from "@heroicons/react/solid";
 import {
   EmptyState,
@@ -15,9 +15,18 @@ import { FloatButton, PrimaryButton } from "../shared/Buttons";
 import { Spinner } from "../shared/Spinner";
 import { useFullTrainingQuery } from "../APIsFullTraining";
 import { FullTrainingListItem } from "./FullTrainingListItem";
+import { Pagination } from "../shared/Pagination";
 
 const FullTrainingList = () => {
-  const { status, data: fullTraining } = useFullTrainingQuery();
+  const pageSize = 10;
+  const location = useLocation();
+  const pageParams = location.search.substr(location.search.length - 1);
+  const { status, data: fullTraining } = useFullTrainingQuery({
+    limit: pageSize,
+    skip: Number(pageParams) * pageSize,
+  });
+  const totalOfPages = status === "success" && Math.ceil(fullTraining.totalCount / pageSize);
+
   return (
     <div>
       <Helmet title="Séance" />
@@ -75,6 +84,8 @@ const FullTrainingList = () => {
           <FloatButton as={Link} to="/full-training/creation" tw="">
             <PlusIcon tw="h-12 w-10 text-gray-800" />
           </FloatButton>
+
+          <Pagination data={fullTraining} pageParams={pageParams} totalOfPages={totalOfPages} />
         </PageContent>
       </Page>
     </div>
