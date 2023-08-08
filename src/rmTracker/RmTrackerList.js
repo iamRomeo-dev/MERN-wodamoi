@@ -14,13 +14,10 @@ import { NotFoundIllustration } from "../not-found/NotFoundIllustration";
 import { FloatButton, PrimaryButton } from "../shared/Buttons";
 import { RmTrackerListItem } from "./RmTrackerListItem";
 import { useRmQuery } from "../APIsRmTracker";
-import { useAuth0 } from "@auth0/auth0-react";
-import { Filter } from "../shared/QueryHelper";
 import { Spinner } from "../shared/Spinner";
 import { Pagination } from "../shared/Pagination";
 
 const RmTrackerList = () => {
-  const { user } = useAuth0();
   const location = useLocation();
   const pageSize = 10;
   const pageParams = location.search.substr(location.search.length - 1);
@@ -28,13 +25,6 @@ const RmTrackerList = () => {
   const { status, data: rms } = useRmQuery({
     limit: pageSize,
     skip: Number(pageParams) * pageSize,
-    ...Filter.from({
-      $and: [
-        {
-          createdBy: Filter.regex(user.name),
-        },
-      ],
-    }),
   });
   const totalOfPages = status === "success" && Math.ceil(rms.totalCount / pageSize);
 

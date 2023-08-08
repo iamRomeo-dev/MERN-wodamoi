@@ -44,13 +44,6 @@ const RmTrackerCreation = () => {
   const { data: rms } = useRmQuery({
     limit: pageSize,
     skip: Number(pageParams) * pageSize,
-    ...Filter.from({
-      $and: [
-        {
-          createdBy: Filter.regex(user.name),
-        },
-      ],
-    }),
   });
 
   let movments = [];

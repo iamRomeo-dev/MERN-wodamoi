@@ -17,23 +17,14 @@ import { useFullTrainingQuery } from "../APIsFullTraining";
 import { FullTrainingListItem } from "./FullTrainingListItem";
 import { Pagination } from "../shared/Pagination";
 import { Filter } from "../shared/QueryHelper";
-import { useAuth0 } from "@auth0/auth0-react";
 
 const FullTrainingList = () => {
-  const { user } = useAuth0();
   const pageSize = 10;
   const location = useLocation();
   const pageParams = location.search.substr(location.search.length - 1);
   const { status, data: fullTraining } = useFullTrainingQuery({
     limit: pageSize,
     skip: Number(pageParams) * pageSize,
-    ...Filter.from({
-      $and: [
-        {
-          createdBy: Filter.regex(user.name),
-        },
-      ],
-    }),
   });
   const totalOfPages = status === "success" && Math.ceil(fullTraining.totalCount / pageSize);
   return (

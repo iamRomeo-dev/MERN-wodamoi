@@ -29,9 +29,6 @@ const RmTrackerByMovment = () => {
         {
           movment: Filter.regex(movment),
         },
-        {
-          createdBy: Filter.regex(user.name),
-        },
       ],
     }),
   });

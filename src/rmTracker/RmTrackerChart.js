@@ -2,24 +2,14 @@
 import "twin.macro";
 import { useParams } from "react-router-dom";
 import { useRmQuery } from "../APIsRmTracker";
-import { Filter } from "../shared/QueryHelper";
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import { useAuth0 } from "@auth0/auth0-react";
 
 const RmTrackerChart = () => {
-  const { user } = useAuth0();
   const { movment } = useParams();
 
-  const { status, data: rm } = useRmQuery({
-    ...Filter.from({
-      $and: [
-        {
-          createdBy: Filter.regex(user.name),
-          movment: Filter.regex(movment),
-        },
-      ],
-    }),
-  });
+  const { status, data: data } = useRmQuery();
+
+  const rm = data?.list?.filter((word) => word.movment === movment);
 
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
@@ -46,7 +36,7 @@ const RmTrackerChart = () => {
 
   const weightMin = [];
   if (status === "success") {
-    let weightArray = rm?.list.map((data) => data.weight);
+    let weightArray = rm.map((data) => data.weight);
     weightMax.push(Math.max(...weightArray));
     weightMin.push(Math.min(...weightArray));
   }
@@ -55,7 +45,7 @@ const RmTrackerChart = () => {
     <>
       <ResponsiveContainer width={"95%"} aspect={2}>
         <LineChart
-          data={rm?.list}
+          data={rm}
           margin={{
             top: 20,
             right: 15,
