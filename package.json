@@ -2,6 +2,8 @@
   "name": "wodamoi",
   "version": "1.0.0",
   "private": true,
+  "author": "Romeo Brilland <romeo.brilland@live.fr>",
+  "license": "UNLICENSED",
   "dependencies": {
     "@auth0/auth0-react": "^1.9.0",
     "@emotion/react": "^11.7.1",
