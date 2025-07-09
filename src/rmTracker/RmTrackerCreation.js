@@ -92,11 +92,12 @@ const RmTrackerCreation = () => {
                       {isNew === false ? (
                         rmParam === "new" ? (
                           <select
-                            {...register("movment")}
+                            {...register("movment", { required: true })}
                             id="movment"
                             name="movment"
                             tw="w-full focus:ring-primary-500 focus:border-primary-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md pr-8"
                           >
+                            <option value="">-- Sélectionner un mouvement --</option>
                             {setMovments.map((option, index) => (
                               <option key={index} value={option}>
                                 {option.toUpperCase()}
