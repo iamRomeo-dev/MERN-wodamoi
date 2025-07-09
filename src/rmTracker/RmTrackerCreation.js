@@ -99,7 +99,7 @@ const RmTrackerCreation = () => {
                           >
                             {setMovments.map((option, index) => (
                               <option key={index} value={option}>
-                                {option}
+                                {option.toUpperCase()}
                               </option>
                             ))}
                           </select>

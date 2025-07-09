@@ -78,7 +78,7 @@ const RmTrackerChartSuccessExist = ({ rm }) => {
 const RmTrackerChartSuccess = ({ data, movment }) => {
   console.log("data", data);
   console.log("movment", movment);
-  const rm = data.list.filter((word) => word.movment === movment);
+  const rm = data.list.filter((word) => word.movment.toLowerCase() === movment.toLowerCase());
 
   if (rm.length > 0) {
     return <RmTrackerChartSuccessExist rm={rm} />;
