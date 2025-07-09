@@ -5,8 +5,28 @@ import { useRmQuery } from "../APIsRmTracker";
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { Spinner } from "../shared/Spinner";
 
+const toto = [
+  {
+    createdAt: "2025-07-09T13:00:07.820Z",
+    createdBy: "aaa@aaa.fr",
+    movment: "bbb",
+    updatedAt: "2025-07-09T13:00:07.820Z",
+    weight: "11",
+    __v: 0,
+    _id: "686e67d70f273b7db2bca58d",
+  },
+  {
+    createdAt: "2025-07-09T13:00:07.820Z",
+    createdBy: "aaa@aaa.fr",
+    movment: "bbb",
+    updatedAt: "2025-07-09T13:00:07.820Z",
+    weight: "13",
+    __v: 0,
+    _id: "686e67d70f273b7db2bca58d",
+  },
+];
 const RmTrackerChartSuccess = ({ data, movment }) => {
-  const rm = data?.list?.filter((word) => word.movment === movment);
+  const rm = toto;
 
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
@@ -36,7 +56,7 @@ const RmTrackerChartSuccess = ({ data, movment }) => {
   let weightArray = rm.map((data) => data.weight);
   weightMax.push(Math.max(...weightArray));
   weightMin.push(Math.min(...weightArray));
-
+  console.log("rm", rm);
   return (
     <>
       <ResponsiveContainer width={"95%"} aspect={2}>
