@@ -24,4 +24,8 @@ jobs:
         run: npm test --if-present
 
       - name: 🏗️ Build React app
-        run: node --openssl-legacy-provider node_modules/react-scripts/scripts/build.js
+        run: npm run build
+
+      - name: Create .env file
+        run: |
+          echo "REACT_APP_API_URL=${{ secrets.REACT_APP_API_URL }}" >> .env
