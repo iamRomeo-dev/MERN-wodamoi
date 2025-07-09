@@ -16,15 +16,26 @@ import { Spinner } from "../shared/Spinner";
 import { useFullTrainingQuery } from "../APIsFullTraining";
 import { FullTrainingListItem } from "./FullTrainingListItem";
 import { Pagination } from "../shared/Pagination";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Filter } from "../shared/QueryHelper";
 
 const FullTrainingList = () => {
   const pageSize = 10;
+  const { user } = useAuth0();
   const location = useLocation();
   const pageParams = location.search.substr(location.search.length - 1);
   const { status, data: fullTraining } = useFullTrainingQuery({
     limit: pageSize,
     skip: Number(pageParams) * pageSize,
+    ...Filter.from({
+      $and: [
+        {
+          createdBy: { $regex: user.email, $options: "i" },
+        },
+      ],
+    }),
   });
+
   const totalOfPages = status === "success" && Math.ceil(fullTraining.totalCount / pageSize);
   return (
     <div>

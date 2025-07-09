@@ -16,16 +16,29 @@ import { RmTrackerListItem } from "./RmTrackerListItem";
 import { useRmQuery } from "../APIsRmTracker";
 import { Spinner } from "../shared/Spinner";
 import { Pagination } from "../shared/Pagination";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Filter } from "../shared/QueryHelper";
 
 const RmTrackerList = () => {
   const location = useLocation();
+  const { user } = useAuth0();
   const pageSize = 10000000;
   const pageParams = location.search.substr(location.search.length - 1);
 
   const { status, data: rms } = useRmQuery({
     limit: pageSize,
     skip: Number(pageParams) * pageSize,
+    ...Filter.from({
+      $and: [
+        {
+          createdBy: { $regex: user.email, $options: "i" },
+        },
+      ],
+    }),
   });
+
+  console.log("rms", rms);
+
   const totalOfPages = status === "success" && Math.ceil(rms.totalCount / pageSize);
 
   // Sort the array in order to keep only unique objects with the same movment value
