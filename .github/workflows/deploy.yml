@@ -24,4 +24,4 @@ jobs:
         run: npm test --if-present
 
       - name: 🏗️ Build React app
-        run: npm run build
+        run: node --openssl-legacy-provider node_modules/react-scripts/scripts/build.js
