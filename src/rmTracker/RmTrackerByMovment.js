@@ -7,7 +7,6 @@ import { ChevronLeftIcon, PlusIcon } from "@heroicons/react/solid";
 import { FloatButton } from "../shared/Buttons";
 import { RmTrackerListItem } from "./RmTrackerListItem";
 import { useRmQuery } from "../APIsRmTracker";
-import { useAuth0 } from "@auth0/auth0-react";
 import { Filter } from "../shared/QueryHelper";
 import RmTrackerChart from "./RmTrackerChart";
 import { Spinner } from "../shared/Spinner";
@@ -15,7 +14,6 @@ import { Pagination } from "../shared/Pagination";
 
 const RmTrackerByMovment = () => {
   const { movment } = useParams();
-  const { user } = useAuth0();
 
   const pageSize = 4;
   const location = useLocation();

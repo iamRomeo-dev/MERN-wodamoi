@@ -16,7 +16,6 @@ import { Spinner } from "../shared/Spinner";
 import { useFullTrainingQuery } from "../APIsFullTraining";
 import { FullTrainingListItem } from "./FullTrainingListItem";
 import { Pagination } from "../shared/Pagination";
-import { Filter } from "../shared/QueryHelper";
 
 const FullTrainingList = () => {
   const pageSize = 10;

@@ -7,7 +7,7 @@ import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "rec
 const RmTrackerChart = () => {
   const { movment } = useParams();
 
-  const { status, data: data } = useRmQuery();
+  const { status, data } = useRmQuery();
 
   const rm = data?.list?.filter((word) => word.movment === movment);
 
