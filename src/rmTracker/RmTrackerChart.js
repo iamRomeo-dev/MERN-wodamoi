@@ -34,7 +34,7 @@ const RmTrackerChartSuccessExist = ({ rm }) => {
   let weightArray = rm.map((data) => data.weight);
   weightMax.push(Math.max(...weightArray));
   weightMin.push(Math.min(...weightArray));
-  console.log("rm", rm);
+
   return (
     <>
       <ResponsiveContainer width={"95%"} aspect={2}>
@@ -76,8 +76,6 @@ const RmTrackerChartSuccessExist = ({ rm }) => {
 };
 
 const RmTrackerChartSuccess = ({ data, movment }) => {
-  console.log("data", data);
-  console.log("movment", movment);
   const rm = data.list.filter((word) => word.movment.toLowerCase() === movment.toLowerCase());
 
   if (rm.length > 0) {
