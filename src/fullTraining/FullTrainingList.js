@@ -28,7 +28,6 @@ const FullTrainingList = () => {
   const totalOfPages = status === "success" && Math.ceil(fullTraining.totalCount / pageSize);
   return (
     <div>
-      <p>t4</p>
       <Helmet title="Séance" />
       <Page tw="relative">
         <PageContent tw="relative">

@@ -11,7 +11,6 @@ const Home = () => {
 
   return (
     <div>
-      <p>t2</p>
       <Helmet title={t("Dashboard.title")} />
       <Page tw="relative overflow-hidden">
         <PageContent>
