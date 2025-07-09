@@ -3,12 +3,9 @@ import "twin.macro";
 import { useParams } from "react-router-dom";
 import { useRmQuery } from "../APIsRmTracker";
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { Spinner } from "../shared/Spinner";
 
-const RmTrackerChart = () => {
-  const { movment } = useParams();
-
-  const { status, data } = useRmQuery();
-
+const RmTrackerChartSuccess = ({ data, movment }) => {
   const rm = data?.list?.filter((word) => word.movment === movment);
 
   const CustomTooltip = ({ active, payload }) => {
@@ -35,11 +32,10 @@ const RmTrackerChart = () => {
   const weightMax = [];
 
   const weightMin = [];
-  if (status === "success") {
-    let weightArray = rm.map((data) => data.weight);
-    weightMax.push(Math.max(...weightArray));
-    weightMin.push(Math.min(...weightArray));
-  }
+
+  let weightArray = rm.map((data) => data.weight);
+  weightMax.push(Math.max(...weightArray));
+  weightMin.push(Math.min(...weightArray));
 
   return (
     <>
@@ -79,6 +75,23 @@ const RmTrackerChart = () => {
       </ResponsiveContainer>
     </>
   );
+};
+
+const RmTrackerChart = () => {
+  const { movment } = useParams();
+
+  const { status, data } = useRmQuery();
+  if (status === "error") {
+    return <p tw="flex justify-center text-xs text-white">Impossible d'afficher le graphique</p>;
+  }
+
+  if (status === "loading") {
+    return <Spinner tw="h-6 w-6 fixed left-1/2 md:left-2/3 top-1/2" />;
+  }
+
+  if (status === "success") {
+    return <RmTrackerChartSuccess data={data} movment={movment} />;
+  }
 };
 
 export default RmTrackerChart;
