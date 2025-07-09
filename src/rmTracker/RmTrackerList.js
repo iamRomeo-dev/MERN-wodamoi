@@ -19,7 +19,7 @@ import { Pagination } from "../shared/Pagination";
 
 const RmTrackerList = () => {
   const location = useLocation();
-  const pageSize = 10;
+  const pageSize = 10000000;
   const pageParams = location.search.substr(location.search.length - 1);
 
   const { status, data: rms } = useRmQuery({
