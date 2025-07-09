@@ -5,9 +5,7 @@ import { useRmQuery } from "../APIsRmTracker";
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { Spinner } from "../shared/Spinner";
 
-const RmTrackerChartSuccess = ({ data, movment }) => {
-  const rm = data.list.filter((word) => word.movment === movment);
-
+const RmTrackerChartSuccessExist = ({ rm }) => {
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (
@@ -75,6 +73,20 @@ const RmTrackerChartSuccess = ({ data, movment }) => {
       </ResponsiveContainer>
     </>
   );
+};
+
+const RmTrackerChartSuccess = ({ data, movment }) => {
+  console.log("data", data);
+  console.log("movment", movment);
+  const rm = data.list.filter((word) => word.movment === movment);
+
+  if (rm.length > 0) {
+    return <RmTrackerChartSuccessExist rm={rm} />;
+  } else {
+    return (
+      <p tw="flex justify-center text-white text-xs mb-4">Impossible d'afficher le graphique</p>
+    );
+  }
 };
 
 const RmTrackerChart = () => {
