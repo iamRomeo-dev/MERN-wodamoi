@@ -147,10 +147,10 @@ const RmTrackerCreation = () => {
                 </div>
               </div>
               <div tw="flex space-x-3 items-center justify-end mt-8">
-                <Button as={Link} to={`/rm-creator`} disable={isSaving}>
+                <Button as={Link} to={`/rm-creator`} disabled={isSaving}>
                   Annuler
                 </Button>
-                <PrimaryButton type="submit" disable={isSaving}>
+                <PrimaryButton type="submit" disabled={isSaving}>
                   Créer
                 </PrimaryButton>
               </div>
