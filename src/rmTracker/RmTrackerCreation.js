@@ -25,6 +25,7 @@ const RmTrackerCreation = () => {
     mutate(
       {
         ...data,
+        movment: data.movment?.toLowerCase(),
         createdBy: user?.name,
       },
       {
@@ -50,6 +51,7 @@ const RmTrackerCreation = () => {
     movments.push(rms?.list[i].movment);
   }
   const setMovments = [...new Set(movments)];
+
   return (
     <>
       <Helmet title="Crée ton rm" />
@@ -109,13 +111,12 @@ const RmTrackerCreation = () => {
                             {...register("movment")}
                             id="movment"
                             name="movment"
-                            defaultValue={rmParam}
                             tw="w-full focus:ring-primary-500 focus:border-primary-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md pr-8"
                           >
-                            <option>{rmParam}</option>
+                            <option value="">-- Sélectionner un mouvement --</option>
                             {setMovments.map((option, index) => (
                               <option key={index} value={option}>
-                                {option}
+                                {option.toUpperCase()}
                               </option>
                             ))}
                           </select>
