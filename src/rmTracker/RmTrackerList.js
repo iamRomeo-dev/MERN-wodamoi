@@ -37,8 +37,6 @@ const RmTrackerList = () => {
     }),
   });
 
-  console.log("rms", rms);
-
   const totalOfPages = status === "success" && Math.ceil(rms.totalCount / pageSize);
 
   // Sort the array in order to keep only unique objects with the same movment value
