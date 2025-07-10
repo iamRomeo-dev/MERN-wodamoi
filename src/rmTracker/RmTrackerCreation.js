@@ -12,6 +12,7 @@ import { useRmMutation, useRmQuery } from "../APIsRmTracker";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useState } from "react";
 import tw from "twin.macro";
+import { Filter } from "../shared/QueryHelper";
 
 const RmTrackerCreation = () => {
   const { user } = useAuth0();
@@ -44,6 +45,13 @@ const RmTrackerCreation = () => {
   const { data: rms } = useRmQuery({
     limit: pageSize,
     skip: Number(pageParams) * pageSize,
+    ...Filter.from({
+      $and: [
+        {
+          createdBy: { $regex: user.email, $options: "i" },
+        },
+      ],
+    }),
   });
 
   let movments = [];

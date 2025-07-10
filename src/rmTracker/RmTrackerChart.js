@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import { useRmQuery } from "../APIsRmTracker";
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { Spinner } from "../shared/Spinner";
+import { Filter } from "../shared/QueryHelper";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const RmTrackerChartSuccessExist = ({ rm }) => {
   const CustomTooltip = ({ active, payload }) => {
@@ -88,9 +90,18 @@ const RmTrackerChartSuccess = ({ data, movment }) => {
 };
 
 const RmTrackerChart = () => {
+  const { user } = useAuth0();
   const { movment } = useParams();
 
-  const { status, data } = useRmQuery();
+  const { status, data } = useRmQuery({
+    ...Filter.from({
+      $and: [
+        {
+          createdBy: { $regex: user.email, $options: "i" },
+        },
+      ],
+    }),
+  });
   if (status === "error") {
     return <p tw="flex justify-center text-xs text-white">Impossible d'afficher le graphique</p>;
   }
