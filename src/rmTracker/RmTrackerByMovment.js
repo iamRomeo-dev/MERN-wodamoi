@@ -11,11 +11,12 @@ import { Filter } from "../shared/QueryHelper";
 import RmTrackerChart from "./RmTrackerChart";
 import { Spinner } from "../shared/Spinner";
 import { Pagination } from "../shared/Pagination";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const RmTrackerByMovment = () => {
   const { movment } = useParams();
-
   const pageSize = 4;
+  const { user } = useAuth0();
   const location = useLocation();
   const pageParams = location.search.substr(location.search.length - 1);
 
@@ -26,6 +27,7 @@ const RmTrackerByMovment = () => {
       $and: [
         {
           movment: Filter.regex(movment),
+          createdBy: { $regex: user.email, $options: "i" },
         },
       ],
     }),
